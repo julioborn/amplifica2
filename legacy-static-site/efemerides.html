@@ -1,0 +1,1408 @@
+/* ==========================================================================
+   AMPLIFICA2 — MEDIO MUSICAL DE ROSARIO
+   Hoja de estilos centralizada (V1 Navegable)
+   Diseñado para lectura periodística, contraste y accesibilidad
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES DE DISEÑO Y PALETA CROMÁTICA
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colores institucionales según identidad */
+  --color-negro-fondo: #000000;
+  --color-negro-bloques: #121212;
+  --color-negro-texto: #18181B;
+  --color-blanco: #FFFFFF;
+  --color-fondo-sitio: #F8F9FA;
+  --color-superficie: #FFFFFF;
+
+  /* Amarillo identitario (del logo) y variantes accesibles */
+  --color-amarillo-acento: #FFD200;
+  --color-amarillo-hover: #E6BD00;
+  --color-amarillo-fondo-suave: #FEF9C3;
+  --color-amarillo-texto-contraste: #854D0E; /* Texto oscuro sobre fondos amarillos para WCAG AA */
+
+  /* Grises funcionales */
+  --color-gris-claro: #F3F4F6;
+  --color-gris-borde: #E5E7EB;
+  --color-gris-borde-oscuro: #404040;
+  --color-gris-texto: #4B5563;
+  --color-gris-mutado: #6B7280;
+
+  /* Tipografías */
+  --fuente-titulares: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fuente-cuerpo: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Espaciados y medidas */
+  --ancho-maximo: 1200px;
+  --ancho-columna-lectura: 740px;
+  --radio-borde: 4px;
+  --espacio-xs: 0.25rem;
+  --espacio-sm: 0.5rem;
+  --espacio-md: 1rem;
+  --espacio-lg: 1.5rem;
+  --espacio-xl: 2.25rem;
+  --espacio-2xl: 3.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET Y BASES TIPOGRÁFICAS
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--fuente-cuerpo);
+  font-size: 1.0625rem; /* 17px para lectura periodística confortable */
+  line-height: 1.6;
+  color: var(--color-negro-texto);
+  background-color: var(--color-fondo-sitio);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-amarillo-hover);
+}
+
+/* Accesibilidad y foco por teclado */
+:focus-visible {
+  outline: 3px solid var(--color-amarillo-acento) !important;
+  outline-offset: 3px;
+}
+
+/* Enlace de salto accesible (Skip to content) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--color-amarillo-acento);
+  color: #000000;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 9999;
+  border-radius: var(--radio-borde);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. AVISO DE MAQUETA EDITORIAL EN DESARROLLO (V1)
+   -------------------------------------------------------------------------- */
+.alerta-desarrollo {
+  background-color: var(--color-amarillo-fondo-suave);
+  color: var(--color-amarillo-texto-contraste);
+  border-bottom: 2px solid var(--color-amarillo-acento);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.alerta-desarrollo__contenedor {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.alerta-desarrollo strong {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8125rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. CABECERA PRINCIPAL (HEADER)
+   -------------------------------------------------------------------------- */
+.sitio-header {
+  background-color: var(--color-negro-fondo);
+  color: var(--color-blanco);
+  border-bottom: 3px solid var(--color-amarillo-acento);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sitio-header__barra-superior {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Identidad y Logo */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--color-blanco);
+}
+
+.marca:hover {
+  color: var(--color-blanco);
+  text-decoration: none;
+}
+
+.marca__logo {
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.marca__texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.marca__nombre {
+  font-family: var(--fuente-titulares);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.marca__nombre span {
+  color: var(--color-amarillo-acento);
+}
+
+.marca__bajada {
+  font-size: 0.8125rem;
+  color: #A1A1AA;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+/* Redes oficiales en cabecera */
+.header-redes {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-redes__titulo {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #A1A1AA;
+}
+
+.boton-red {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-blanco);
+  background-color: #27272A;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radio-borde);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.boton-red svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.boton-red:hover {
+  background-color: var(--color-amarillo-acento);
+  color: #000000;
+  text-decoration: none;
+}
+
+/* Botón menú móvil */
+.boton-menu-movil {
+  display: none;
+  background: transparent;
+  color: var(--color-blanco);
+  border: 1px solid #3F3F46;
+  border-radius: var(--radio-borde);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--fuente-titulares);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.boton-menu-movil:hover {
+  background-color: #27272A;
+}
+
+/* --------------------------------------------------------------------------
+   5. NAVEGACIÓN PRINCIPAL
+   -------------------------------------------------------------------------- */
+.sitio-nav {
+  background-color: #121212;
+  border-top: 1px solid #27272A;
+}
+
+.sitio-nav__contenedor {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.sitio-nav__lista {
+  display: flex;
+  list-style: none;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.sitio-nav__item {
+  position: relative;
+}
+
+/* Enlaces activos en V1 */
+.sitio-nav__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 0.95rem;
+  color: #E4E4E7;
+  font-family: var(--fuente-titulares);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s ease, border-bottom-color 0.15s ease;
+}
+
+.sitio-nav__enlace:hover {
+  color: var(--color-amarillo-acento);
+  border-bottom-color: var(--color-amarillo-acento);
+  text-decoration: none;
+}
+
+.sitio-nav__enlace[aria-current="page"] {
+  color: var(--color-amarillo-acento);
+  border-bottom-color: var(--color-amarillo-acento);
+  background-color: #1c1c1f;
+}
+
+/* --------------------------------------------------------------------------
+   6. CONTENEDOR GENERAL Y ESTRUCTURA EDITORIAL
+   -------------------------------------------------------------------------- */
+.contenedor-principal {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: var(--espacio-lg) 1.25rem var(--espacio-2xl);
+  width: 100%;
+}
+
+/* Migas de pan (Breadcrumbs) para páginas internas */
+.miga-pan {
+  font-size: 0.8125rem;
+  color: var(--color-gris-mutado);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.miga-pan a {
+  color: var(--color-negro-texto);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.miga-pan a:hover {
+  color: var(--color-amarillo-acento);
+  text-decoration: underline;
+}
+
+.miga-pan__separador {
+  color: #A1A1AA;
+}
+
+.miga-pan__actual {
+  color: var(--color-gris-mutado);
+  font-weight: 400;
+}
+
+/* Separadores de sección */
+.separador-editorial {
+  border: 0;
+  height: 2px;
+  background-color: var(--color-gris-borde);
+  margin: var(--espacio-2xl) 0;
+}
+
+/* Encabezados de bloque editorial */
+.encabezado-bloque {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--espacio-lg);
+  border-bottom: 2px solid var(--color-negro-fondo);
+  padding-bottom: 0.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.encabezado-bloque__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-negro-fondo);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.encabezado-bloque__titulo::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background-color: var(--color-amarillo-acento);
+}
+
+.encabezado-bloque__aclaracion {
+  font-size: 0.8125rem;
+  color: var(--color-gris-mutado);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   7. BLOQUE: APERTURA EN PORTADA
+   -------------------------------------------------------------------------- */
+.seccion-apertura {
+  margin-bottom: var(--espacio-2xl);
+}
+
+.articulo-apertura {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-gris-borde);
+  border-left: 5px solid var(--color-amarillo-acento);
+  border-radius: var(--radio-borde);
+  padding: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.articulo-apertura__contenido {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.etiquetas-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.tag-seccion {
+  background-color: var(--color-negro-fondo);
+  color: var(--color-blanco);
+  font-family: var(--fuente-titulares);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+
+.tag-formato {
+  background-color: var(--color-amarillo-acento);
+  color: #000000;
+  font-family: var(--fuente-titulares);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+
+.articulo-apertura__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 2.15rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--color-negro-fondo);
+  margin-bottom: 1rem;
+}
+
+.articulo-apertura__titulo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.articulo-apertura__titulo a:hover {
+  color: var(--color-amarillo-hover);
+  text-decoration: underline;
+}
+
+.articulo-apertura__bajada {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--color-gris-texto);
+  margin-bottom: 1.25rem;
+}
+
+.metadatos-articulo {
+  font-size: 0.875rem;
+  color: var(--color-gris-mutado);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  border-top: 1px dashed var(--color-gris-borde);
+  padding-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.metadatos-articulo strong {
+  color: var(--color-negro-texto);
+}
+
+.enlace-lectura-completa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--fuente-titulares);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-negro-fondo);
+  text-decoration: none;
+  background-color: var(--color-gris-claro);
+  border: 1px solid var(--color-gris-borde);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radio-borde);
+  transition: all 0.15s ease;
+}
+
+.enlace-lectura-completa:hover {
+  background-color: var(--color-amarillo-acento);
+  border-color: var(--color-amarillo-acento);
+  color: #000000;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   8. PLACEHOLDERS DE IMÁGENES Y MATERIAL PENDIENTE
+   -------------------------------------------------------------------------- */
+.placeholder-visual {
+  background-color: #F1F5F9;
+  border: 2px dashed #CBD5E1;
+  border-radius: var(--radio-borde);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  min-height: 280px;
+}
+
+.placeholder-visual__icono {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.placeholder-visual__etiqueta {
+  font-family: var(--fuente-titulares);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-negro-texto);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.placeholder-visual__detalle {
+  font-size: 0.8125rem;
+  color: var(--color-gris-mutado);
+  max-width: 320px;
+  line-height: 1.4;
+}
+
+.placeholder-visual__credito {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: #94A3B8;
+  font-style: italic;
+  border-top: 1px dotted #CBD5E1;
+  padding-top: 0.5rem;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   9. NOTICIAS SECUNDARIAS
+   -------------------------------------------------------------------------- */
+.grilla-secundarias {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.tarjeta-secundaria {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-gris-borde);
+  border-top: 3px solid var(--color-negro-fondo);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-secundaria__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-negro-fondo);
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.tarjeta-secundaria__titulo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tarjeta-secundaria__titulo a:hover {
+  text-decoration: underline;
+}
+
+.tarjeta-secundaria__bajada {
+  font-size: 0.95rem;
+  color: var(--color-gris-texto);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* --------------------------------------------------------------------------
+   10. BLOQUE: AGENDA MUSICAL ROSARIO
+   -------------------------------------------------------------------------- */
+.bloque-agenda {
+  background-color: #121212;
+  color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  padding: 2rem 1.75rem;
+  border: 1px solid #27272A;
+  border-top: 4px solid var(--color-amarillo-acento);
+}
+
+.bloque-agenda .encabezado-bloque {
+  border-bottom: 1px solid #27272A;
+  padding-bottom: 0.75rem;
+}
+
+.bloque-agenda .encabezado-bloque__titulo {
+  color: var(--color-blanco);
+}
+
+.bloque-agenda .encabezado-bloque__aclaracion a {
+  color: var(--color-amarillo-acento);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.bloque-agenda .encabezado-bloque__aclaracion a:hover {
+  text-decoration: underline;
+}
+
+.agenda-bajada {
+  color: #D4D4D8;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+}
+
+.grilla-eventos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.tarjeta-evento {
+  background-color: #18181B;
+  border: 1px solid #27272A;
+  border-radius: var(--radio-borde);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tarjeta-evento__fecha-badge {
+  background-color: var(--color-amarillo-acento);
+  color: #000000;
+  font-family: var(--fuente-titulares);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  padding: 0.35rem 0.6rem;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.tarjeta-evento__nombre {
+  font-family: var(--fuente-titulares);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-blanco);
+  margin-bottom: 0.5rem;
+}
+
+.tarjeta-evento__datos {
+  list-style: none;
+  font-size: 0.875rem;
+  color: #D4D4D8;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tarjeta-evento__datos li strong {
+  color: #A1A1AA;
+}
+
+.tarjeta-evento__acceso {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #27272A;
+  font-size: 0.8125rem;
+  margin-top: auto;
+}
+
+.badge-condicion {
+  background-color: #27272A;
+  color: var(--color-amarillo-acento);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.evento-enlace-pendiente {
+  font-size: 0.75rem;
+  color: #A1A1AA;
+  font-style: italic;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   11. ESPACIO AUDIOVISUAL Y MULTIMEDIA (FLEXIBLE)
+   -------------------------------------------------------------------------- */
+.modulo-multimedia {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-gris-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.modulo-multimedia__info h3 {
+  font-family: var(--fuente-titulares);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-negro-fondo);
+}
+
+.modulo-multimedia__info p {
+  color: var(--color-gris-texto);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.multimedia-contenedor-flexible {
+  background-color: #0F172A;
+  color: #F8FAFC;
+  border-radius: var(--radio-borde);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 220px;
+  border: 2px dashed #334155;
+}
+
+.multimedia-contenedor-flexible__icono {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.multimedia-contenedor-flexible__titulo {
+  font-family: var(--fuente-titulares);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.multimedia-contenedor-flexible__nota {
+  font-size: 0.8125rem;
+  color: #94A3B8;
+  max-width: 340px;
+}
+
+/* --------------------------------------------------------------------------
+   12. ÚLTIMAS PUBLICACIONES (PANORAMA EDITORIAL)
+   -------------------------------------------------------------------------- */
+.grilla-ultimas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.tarjeta-publicacion {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-gris-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-publicacion__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tarjeta-publicacion__titulo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tarjeta-publicacion__titulo a:hover {
+  text-decoration: underline;
+}
+
+.tarjeta-publicacion__bajada {
+  font-size: 0.875rem;
+  color: var(--color-gris-texto);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* --------------------------------------------------------------------------
+   13. PLANTILLA DE NOTA MODELO (ESTILOS EDITORIALES DE ARTÍCULO)
+   -------------------------------------------------------------------------- */
+.articulo-completo {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-gris-borde);
+  border-radius: var(--radio-borde);
+  padding: 2.5rem 2rem;
+  margin-bottom: var(--espacio-2xl);
+}
+
+.nota-encabezado {
+  max-width: var(--ancho-columna-lectura);
+  margin: 0 auto 2rem;
+}
+
+.nota-encabezado__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--color-negro-fondo);
+  margin-bottom: 1rem;
+}
+
+.nota-encabezado__bajada {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--color-gris-texto);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.nota-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--color-gris-mutado);
+  border-top: 1px solid var(--color-gris-borde);
+  border-bottom: 1px solid var(--color-gris-borde);
+  padding: 0.75rem 0;
+}
+
+.nota-meta strong {
+  color: var(--color-negro-texto);
+}
+
+.columna-lectura {
+  max-width: var(--ancho-columna-lectura);
+  margin: 0 auto;
+}
+
+.cuerpo-nota {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #27272A;
+}
+
+.cuerpo-nota p {
+  margin-bottom: 1.5rem;
+}
+
+.cuerpo-nota h2 {
+  font-family: var(--fuente-titulares);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--color-negro-fondo);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--color-amarillo-acento);
+  padding-left: 0.75rem;
+}
+
+.cuerpo-nota h3 {
+  font-family: var(--fuente-titulares);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-negro-fondo);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.cuerpo-nota blockquote {
+  border-left: 4px solid var(--color-amarillo-acento);
+  background-color: #FAFAFA;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: #18181B;
+}
+
+.cuerpo-nota figure {
+  margin: 2rem 0;
+}
+
+.cuerpo-nota figcaption {
+  font-size: 0.8125rem;
+  color: var(--color-gris-mutado);
+  margin-top: 0.5rem;
+  border-left: 2px solid var(--color-gris-borde);
+  padding-left: 0.5rem;
+}
+
+/* Ficha del autor/a de la nota */
+.ficha-autor {
+  background-color: var(--color-gris-claro);
+  border: 1px solid var(--color-gris-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.25rem 1.5rem;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.ficha-autor__avatar {
+  width: 56px;
+  height: 56px;
+  background-color: var(--color-negro-fondo);
+  color: var(--color-amarillo-acento);
+  font-family: var(--fuente-titulares);
+  font-weight: 800;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ficha-autor__nombre {
+  font-family: var(--fuente-titulares);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-negro-fondo);
+}
+
+.ficha-autor__bio {
+  font-size: 0.875rem;
+  color: var(--color-gris-texto);
+  margin-top: 0.25rem;
+}
+
+/* Bloque de contenidos relacionados al pie de la nota */
+.seccion-relacionados {
+  max-width: var(--ancho-columna-lectura);
+  margin: 3rem auto 0;
+  border-top: 2px solid var(--color-negro-fondo);
+  padding-top: 1.5rem;
+}
+
+.seccion-relacionados__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   14. PÁGINAS DE SECCIONES (LISTADOS EDITORIALES Y ESTADO VACÍO)
+   -------------------------------------------------------------------------- */
+.seccion-portada-interna {
+  margin-bottom: var(--espacio-2xl);
+}
+
+.cabecera-seccion {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-gris-borde);
+  border-left: 6px solid var(--color-amarillo-acento);
+  border-radius: var(--radio-borde);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cabecera-seccion__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-negro-fondo);
+  margin-bottom: 0.5rem;
+}
+
+.cabecera-seccion__descripcion {
+  font-size: 1.125rem;
+  color: var(--color-gris-texto);
+  max-width: 800px;
+}
+
+.lista-articulos-seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.articulo-item-seccion {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-gris-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.articulo-item-seccion__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.articulo-item-seccion__titulo a {
+  color: var(--color-negro-fondo);
+  text-decoration: none;
+}
+
+.articulo-item-seccion__titulo a:hover {
+  text-decoration: underline;
+}
+
+.articulo-item-seccion__bajada {
+  font-size: 0.95rem;
+  color: var(--color-gris-texto);
+  margin-bottom: 0.75rem;
+}
+
+/* Estado vacío accesible y comprensible */
+.estado-vacio {
+  background-color: var(--color-superficie);
+  border: 2px dashed #CBD5E1;
+  border-radius: var(--radio-borde);
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.estado-vacio__icono {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.estado-vacio__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-negro-fondo);
+  margin-bottom: 0.5rem;
+}
+
+.estado-vacio__texto {
+  font-size: 0.95rem;
+  color: var(--color-gris-texto);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   15. PÁGINA "QUIÉNES SOMOS" (PROPUESTA EDITORIAL Y EQUIPO)
+   -------------------------------------------------------------------------- */
+.quienes-somos-articulo {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-gris-borde);
+  border-radius: var(--radio-borde);
+  padding: 2.5rem 2rem;
+  margin-bottom: var(--espacio-2xl);
+}
+
+.bloque-declaracion {
+  max-width: var(--ancho-columna-lectura);
+  margin: 0 auto 3rem;
+}
+
+.bloque-declaracion h2 {
+  font-family: var(--fuente-titulares);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-negro-fondo);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--color-amarillo-acento);
+  padding-left: 0.75rem;
+}
+
+.bloque-declaracion p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #27272A;
+  margin-bottom: 1.25rem;
+}
+
+.grilla-equipo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.tarjeta-integrante {
+  background-color: #FAFAFA;
+  border: 1px solid var(--color-gris-borde);
+  border-top: 4px solid var(--color-negro-fondo);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-integrante:hover {
+  border-top-color: var(--color-amarillo-acento);
+}
+
+.tarjeta-integrante__avatar {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-negro-fondo);
+  color: var(--color-amarillo-acento);
+  font-family: var(--fuente-titulares);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-bottom: 0.75rem;
+}
+
+.tarjeta-integrante__nombre {
+  font-family: var(--fuente-titulares);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-negro-fondo);
+  margin-bottom: 0.25rem;
+}
+
+.tarjeta-integrante__rol {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-amarillo-texto-contraste);
+  background-color: var(--color-amarillo-fondo-suave);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  align-self: flex-start;
+}
+
+.tarjeta-integrante__detalle {
+  font-size: 0.9375rem;
+  color: var(--color-gris-texto);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   16. PIE DE PÁGINA (FOOTER)
+   -------------------------------------------------------------------------- */
+.sitio-footer {
+  background-color: var(--color-negro-fondo);
+  color: var(--color-blanco);
+  border-top: 4px solid var(--color-amarillo-acento);
+  margin-top: auto;
+  padding: 3rem 1.25rem 1.5rem;
+}
+
+.sitio-footer__contenedor {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #27272A;
+}
+
+.footer-columna__titulo {
+  font-family: var(--fuente-titulares);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-amarillo-acento);
+  margin-bottom: 1rem;
+}
+
+.footer-descripcion {
+  font-size: 0.875rem;
+  color: #A1A1AA;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+  max-width: 420px;
+}
+
+.footer-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.footer-lista a {
+  color: #D4D4D8;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-lista a:hover {
+  color: var(--color-amarillo-acento);
+  text-decoration: underline;
+}
+
+.footer-redes-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-red-enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.footer-red-enlace svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-amarillo-acento);
+}
+
+.footer-red-enlace:hover {
+  color: var(--color-amarillo-acento);
+  text-decoration: underline;
+}
+
+.sitio-footer__inferior {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  color: #71717A;
+}
+
+/* --------------------------------------------------------------------------
+   17. ADAPTACIÓN A DISPOSITIVOS MÓVILES (RESPONSIVE)
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .articulo-apertura {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .articulo-apertura__titulo {
+    font-size: 1.75rem;
+  }
+
+  .grilla-eventos {
+    grid-template-columns: 1fr;
+  }
+
+  .modulo-multimedia {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .grilla-ultimas {
+    grid-template-columns: 1fr;
+  }
+
+  .articulo-item-seccion {
+    grid-template-columns: 1fr;
+  }
+
+  .sitio-footer__contenedor {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .sitio-header__barra-superior {
+    flex-wrap: wrap;
+  }
+
+  .header-redes {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 0.5rem;
+    border-top: 1px solid #27272A;
+  }
+
+  .boton-menu-movil {
+    display: inline-flex;
+  }
+
+  /* Menú desplegable en celular */
+  .sitio-nav {
+    display: none;
+  }
+
+  .sitio-nav.is-open {
+    display: block;
+  }
+
+  .sitio-nav__lista {
+    flex-direction: column;
+    padding: 0.75rem 0;
+  }
+
+  .sitio-nav__enlace {
+    width: 100%;
+    padding: 0.65rem 0.5rem;
+    border-bottom: 1px solid #27272A;
+  }
+
+  .grilla-secundarias {
+    grid-template-columns: 1fr;
+  }
+
+  .articulo-apertura {
+    padding: 1.25rem;
+  }
+
+  .bloque-agenda {
+    padding: 1.5rem 1rem;
+  }
+
+  .articulo-completo {
+    padding: 1.5rem 1rem;
+  }
+
+  .nota-encabezado__titulo {
+    font-size: 1.85rem;
+  }
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiénes somos · Amplifica2 (Medio musical de Rosario)</title>
+  <meta name="description" content="Conocé al equipo de Amplifica2, nuestra línea editorial y el compromiso periodístico con la música de Rosario y la región.">
+
+  <!-- Tipografía Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos centralizados -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- ENCABEZADO -->
+  <header class="sitio-header" role="banner">
+    <div class="sitio-header__barra-superior">
+      
+      <a href="index.html" class="marca" aria-label="Amplifica2 - Inicio">
+        <img src="img/logo/logo.jpg" alt="Logo de Amplifica2" class="marca__logo" width="58" height="58">
+        <div class="marca__texto">
+          <span class="marca__nombre">AMPLIFICA<span>2</span></span>
+          <span class="marca__bajada">Medio musical · Rosario, Argentina</span>
+        </div>
+      </a>
+
+      <div class="header-redes">
+        <span class="header-redes__titulo">Seguinos:</span>
+        <a href="https://www.instagram.com/amplifica2.ros/?hl=es-la" target="_blank" rel="noopener noreferrer" class="boton-red" aria-label="Instagram de Amplifica2 (abre en pestaña nueva)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/@Amplifica2" target="_blank" rel="noopener noreferrer" class="boton-red" aria-label="YouTube de Amplifica2 (abre en pestaña nueva)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span>YouTube</span>
+        </a>
+      </div>
+
+      <button type="button" class="boton-menu-movil" aria-expanded="false" aria-controls="menu-navegacion" aria-label="Abrir o cerrar menú de navegación">
+        <span>☰</span>
+        <span>Menú</span>
+      </button>
+    </div>
+
+    <!-- Menú de secciones -->
+    <nav class="sitio-nav" id="menu-navegacion" aria-label="Secciones del medio">
+      <div class="sitio-nav__contenedor">
+        <ul class="sitio-nav__lista">
+          <li class="sitio-nav__item"><a href="index.html" class="sitio-nav__enlace">Inicio</a></li>
+          <li class="sitio-nav__item"><a href="secciones/agenda.html" class="sitio-nav__enlace">Agenda</a></li>
+          <li class="sitio-nav__item"><a href="secciones/noticias.html" class="sitio-nav__enlace">Noticias</a></li>
+          <li class="sitio-nav__item"><a href="secciones/entrevistas.html" class="sitio-nav__enlace">Entrevistas</a></li>
+          <li class="sitio-nav__item"><a href="secciones/coberturas.html" class="sitio-nav__enlace">Coberturas</a></li>
+          <li class="sitio-nav__item"><a href="secciones/efemerides.html" class="sitio-nav__enlace">Efemérides</a></li>
+          <li class="sitio-nav__item"><a href="quienes-somos.html" class="sitio-nav__enlace" aria-current="page">Quiénes somos</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="contenedor-principal" id="contenido-principal">
+    
+    <nav class="miga-pan" aria-label="Miga de pan">
+      <a href="index.html">Inicio</a>
+      <span class="miga-pan__separador">/</span>
+      <span class="miga-pan__actual" aria-current="page">Quiénes somos</span>
+    </nav>
+
+    <article class="quienes-somos-articulo">
+      <div class="bloque-declaracion">
+        <header>
+          <span class="tag-seccion">Institucional</span>
+          <h1 class="nota-encabezado__titulo" style="margin-top: 0.5rem;">Quiénes somos</h1>
+          <p class="nota-encabezado__bajada">
+            Somos un medio musical universitario producido en Rosario que combina agenda, entrevistas, coberturas e historias para descubrir y vivir la música de cerca.
+          </p>
+        </header>
+
+        <h2>Nuestra propuesta periodística</h2>
+        <p>
+          En Rosario hay una enorme cantidad de recitales, bandas y ciclos sonando todo el tiempo, pero la información suele estar dispersa en historias que desaparecen o canales aislados. Muchos artistas emergentes y salas autogestivas tienen poca visibilidad.
+        </p>
+        <p>
+          <strong>Amplifica2</strong> nace para tender ese puente: reunir lo que pasa en la ciudad, facilitar el acceso a recitales —con especial atención en propuestas gratuitas, a la gorra o accesibles— y dar contexto a lo que escuchamos.
+        </p>
+        <p>
+          Abordamos la música con mirada plural, abierta a diferentes géneros y corrientes, con datos verificados y un criterio editorial claro: <strong>diferenciamos la información precisa de nuestras opiniones y debates</strong>.
+        </p>
+
+        <h2>Nuestro tono y formatos</h2>
+        <p>
+          Hablamos en español de Argentina, con un tono cercano, dinámico y coloquial, donde hay lugar para el humor, la charla descontracturada y el debate apasionado, pero con rigor a la hora de informar fechas, precios, lugares y trayectorias.
+        </p>
+        <p>
+          Trabajamos la producción periodística en distintos formatos: notas escritas, podcast, videos y piezas verticales en redes, conectando nuestra web con nuestros canales en YouTube e Instagram.
+        </p>
+
+        <h2>La redacción</h2>
+        <p>
+          El equipo de Amplifica2 está integrado por cinco estudiantes universitarios de Periodismo, cada uno con una mirada y un rol específico dentro de la cobertura:
+        </p>
+
+        <!-- Grilla con los 5 integrantes reales -->
+        <div class="grilla-equipo">
+          
+          <div class="tarjeta-integrante">
+            <div class="tarjeta-integrante__avatar" aria-hidden="true">JG</div>
+            <h3 class="tarjeta-integrante__nombre">Juan Manuel Grisolia</h3>
+            <span class="tarjeta-integrante__rol">Conductor</span>
+            <p class="tarjeta-integrante__detalle">
+              Conduce los envíos y asume el rol del oyente curioso que pregunta sin vueltas, aportando frescura al no posicionarse desde el saber enciclopédico.
+            </p>
+          </div>
+
+          <div class="tarjeta-integrante">
+            <div class="tarjeta-integrante__avatar" aria-hidden="true">CM</div>
+            <h3 class="tarjeta-integrante__nombre">Carmina Monjes</h3>
+            <span class="tarjeta-integrante__rol">Panelista · Agenda y nicho</span>
+            <p class="tarjeta-integrante__detalle">
+              Especializada en el rastreo de fechas locales, ciclos emergentes, espacios autogestionados y escenas musicales de nicho en Rosario.
+            </p>
+          </div>
+
+          <div class="tarjeta-integrante">
+            <div class="tarjeta-integrante__avatar" aria-hidden="true">LS</div>
+            <h3 class="tarjeta-integrante__nombre">Luisina Salgado</h3>
+            <span class="tarjeta-integrante__rol">Panelista · Escena internacional</span>
+            <p class="tarjeta-integrante__detalle">
+              A cargo de las columnas de música internacional, tendencias globales y los lanzamientos más destacados del circuito exterior.
+            </p>
+          </div>
+
+          <div class="tarjeta-integrante">
+            <div class="tarjeta-integrante__avatar" aria-hidden="true">MM</div>
+            <h3 class="tarjeta-integrante__nombre">Morena Manduca</h3>
+            <span class="tarjeta-integrante__rol">Panelista · Juegos semanales</span>
+            <p class="tarjeta-integrante__detalle">
+              Dinamiza la propuesta con juegos semanales, trivias y consignas participativas para conectar a la audiencia con las historias de las canciones.
+            </p>
+          </div>
+
+          <div class="tarjeta-integrante">
+            <div class="tarjeta-integrante__avatar" aria-hidden="true">GB</div>
+            <h3 class="tarjeta-integrante__nombre">Gregorio Born</h3>
+            <span class="tarjeta-integrante__rol">Panelista · Efemérides</span>
+            <p class="tarjeta-integrante__detalle">
+              Especialista en efemérides, aniversarios discográficos, momentos históricos y rescates de archivo del rock y la música popular.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </article>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="sitio-footer" role="contentinfo">
+    <div class="sitio-footer__contenedor">
+      
+      <div class="footer-columna">
+        <h3 class="footer-columna__titulo">AMPLIFICA2</h3>
+        <p class="footer-descripcion">
+          Medio musical autogestionado por estudiantes universitarios de Periodismo en Rosario. Combinamos agenda, entrevistas, coberturas e historias para descubrir la escena cultural de la ciudad y la región.
+        </p>
+      </div>
+
+      <div class="footer-columna">
+        <h3 class="footer-columna__titulo">Secciones</h3>
+        <ul class="footer-lista">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="quienes-somos.html">Quiénes somos</a></li>
+          <li><a href="secciones/agenda.html">Agenda musical de Rosario</a></li>
+          <li><a href="secciones/noticias.html">Noticias</a></li>
+          <li><a href="secciones/entrevistas.html">Entrevistas</a></li>
+          <li><a href="secciones/coberturas.html">Coberturas</a></li>
+          <li><a href="secciones/efemerides.html">Efemérides</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-columna">
+        <h3 class="footer-columna__titulo">Canales oficiales</h3>
+        <ul class="footer-redes-lista">
+          <li>
+            <a href="https://www.instagram.com/amplifica2.ros/?hl=es-la" target="_blank" rel="noopener noreferrer" class="footer-red-enlace" aria-label="Instagram de Amplifica2 (abre en pestaña nueva)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              <span>@amplifica2.ros en Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@Amplifica2" target="_blank" rel="noopener noreferrer" class="footer-red-enlace" aria-label="YouTube de Amplifica2 (abre en pestaña nueva)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>@Amplifica2 en YouTube</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="sitio-footer__inferior">
+      <p>© 2026 Amplifica2 · Producción periodística universitaria independiente · Rosario</p>
+      <p>Front-end estático sin dependencias</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amplifica2 · Medio musical de Rosario</title>
+  <meta name="description" content="Amplifica2 es un medio musical con base en Rosario que combina agenda, entrevistas, coberturas e historias para descubrir artistas y propuestas locales.">
+
+  <!-- Tipografía Montserrat con fallback seguro a fuentes del sistema -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos centralizada -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Enlace accesible de salto al contenido principal para navegación por teclado -->
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Banner informativo -->
+  <aside class="alerta-desarrollo" aria-label="Aviso editorial">
+    <div class="alerta-desarrollo__contenedor">
+      <strong>Amplifica2</strong>
+      <span>·</span>
+      <span>Medio musical universitario de Rosario · Producción periodística independiente y agenda cultural en vivo.</span>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       ENCABEZADO INSTITUCIONAL
+       ======================================================================== -->
+  <header class="sitio-header" role="banner">
+    <div class="sitio-header__barra-superior">
+      
+      <!-- Identidad y Logo oficial -->
+      <a href="index.html" class="marca" aria-label="Amplifica2 - Inicio">
+        <img src="img/logo/logo.jpg" alt="Logo de Amplifica2 con fondo negro y micrófono integrado" class="marca__logo" width="58" height="58">
+        <div class="marca__texto">
+          <span class="marca__nombre">AMPLIFICA<span>2</span></span>
+          <span class="marca__bajada">Medio musical · Rosario, Argentina</span>
+        </div>
+      </a>
+
+      <!-- Accesos confirmados a plataformas externas -->
+      <div class="header-redes">
+        <span class="header-redes__titulo">Seguinos:</span>
+        <a href="https://www.instagram.com/amplifica2.ros/?hl=es-la" target="_blank" rel="noopener noreferrer" class="boton-red" aria-label="Instagram de Amplifica2 (abre en pestaña nueva)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/@Amplifica2" target="_blank" rel="noopener noreferrer" class="boton-red" aria-label="YouTube de Amplifica2 (abre en pestaña nueva)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span>YouTube</span>
+        </a>
+      </div>
+
+      <!-- Botón menú móvil -->
+      <button type="button" class="boton-menu-movil" aria-expanded="false" aria-controls="menu-navegacion" aria-label="Abrir o cerrar menú de navegación">
+        <span>☰</span>
+        <span>Menú</span>
+      </button>
+    </div>
+
+    <!-- Menú con las 5 secciones y Quiénes somos -->
+    <nav class="sitio-nav" id="menu-navegacion" aria-label="Secciones del medio">
+      <div class="sitio-nav__contenedor">
+        <ul class="sitio-nav__lista">
+          <li class="sitio-nav__item">
+            <a href="index.html" class="sitio-nav__enlace" aria-current="page">Inicio</a>
+          </li>
+          <li class="sitio-nav__item">
+            <a href="secciones/agenda.html" class="sitio-nav__enlace">Agenda</a>
+          </li>
+          <li class="sitio-nav__item">
+            <a href="secciones/noticias.html" class="sitio-nav__enlace">Noticias</a>
+          </li>
+          <li class="sitio-nav__item">
+            <a href="secciones/entrevistas.html" class="sitio-nav__enlace">Entrevistas</a>
+          </li>
+          <li class="sitio-nav__item">
+            <a href="secciones/coberturas.html" class="sitio-nav__enlace">Coberturas</a>
+          </li>
+          <li class="sitio-nav__item">
+            <a href="secciones/efemerides.html" class="sitio-nav__enlace">Efemérides</a>
+          </li>
+          <li class="sitio-nav__item">
+            <a href="quienes-somos.html" class="sitio-nav__enlace">Quiénes somos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================================
+       CONTENIDO PERIODÍSTICO PRINCIPAL (PORTADA)
+       ======================================================================== -->
+  <main class="contenedor-principal" id="contenido-principal">
+
+    <!-- 1. APERTURA EDITORIAL: HISTORIA PRINCIPAL DESTACADA -->
+    <section class="seccion-apertura" aria-labelledby="titulo-apertura">
+      <div class="encabezado-bloque">
+        <h2 class="encabezado-bloque__titulo">Apertura editorial</h2>
+        <span class="encabezado-bloque__aclaracion">Entrevista destacada de la semana</span>
+      </div>
+
+      <article class="articulo-apertura">
+        <div class="articulo-apertura__contenido">
+          <div class="etiquetas-meta">
+            <span class="tag-seccion">ENTREVISTAS</span>
+            <span class="tag-formato">NOTA ESCRITA + PODCAST</span>
+          </div>
+
+          <h1 class="articulo-apertura__titulo" id="titulo-apertura">
+            <a href="notas/nota-modelo.html">“En Rosario los espacios se construyen tocando”: la autogestión de Luces del Parque y su primer disco</a>
+          </h1>
+
+          <p class="articulo-apertura__bajada">
+            El cuarteto de barrio Echesortu presenta ‘Distorsión Costera’. Conversamos con la banda sobre cómo producir música de guitarras limpias en tiempos de algoritmos, el circuito de salas barriales y la necesidad de abrir fechas gratuitas.
+          </p>
+
+          <div class="metadatos-articulo">
+            <span>Por <strong>Juan Manuel Grisolia y Carmina Monjes</strong></span>
+            <span>·</span>
+            <span>Publicado: <time datetime="2026-09-22">22 de septiembre de 2026</time></span>
+          </div>
+
+          <div>
+            <a href="notas/nota-modelo.html" class="enlace-lectura-completa">
+              Leer entrevista completa →
+            </a>
+          </div>
+        </div>
+
+        <!-- Marco editorial para imagen de cobertura -->
+        <figure class="articulo-apertura__imagen">
+          <div class="placeholder-visual" style="background-color: #18181B; color: #FFFFFF; border: 2px solid var(--color-amarillo-acento);" role="img" aria-label="Cobertura en sala de ensayo">
+            <span class="placeholder-visual__icono" style="color: var(--color-amarillo-acento);" aria-hidden="true">🎸</span>
+            <span class="placeholder-visual__etiqueta" style="color: #FFFFFF; font-size: 1rem;">LUCES DEL PARQUE</span>
+            <p class="placeholder-visual__detalle" style="color: #A1A1AA;">
+              Ensayo previo a la presentación en el Galpón 11. Registro de producción propia en Rosario.
+            </p>
+            <figcaption class="placeholder-visual__credito" style="color: #71717A;">
+              Fotografía de cobertura editorial · Amplifica2
+            </figcaption>
+          </div>
+        </figure>
+      </article>
+    </section>
+
+    <!-- 2. NOTICIAS SECUNDARIAS CON MENOR PESO VISUAL -->
+    <section class="seccion-secundarias" aria-labelledby="titulo-secundarias">
+      <div class="encabezado-bloque">
+        <h2 class="encabezado-bloque__titulo" id="titulo-secundarias">Actualidad musical</h2>
+        <span class="encabezado-bloque__aclaracion">Escena local y panorama internacional</span>
+      </div>
+
+      <div class="grilla-secundarias">
+        <!-- Noticia Secundaria 1: Galpón 11 -->
+        <article class="tarjeta-secundaria">
+          <div class="etiquetas-meta">
+            <span class="tag-seccion">NOTICIAS</span>
+            <span class="tag-formato">CONVOCATORIA</span>
+          </div>
+
+          <h3 class="tarjeta-secundaria__titulo">
+            <a href="secciones/noticias.html">El Galpón 11 abre convocatoria para bandas sub-25 con fechas gratuitas frente al río</a>
+          </h3>
+
+          <p class="tarjeta-secundaria__bajada">
+            La Secretaría de Cultura seleccionará 16 proyectos emergentes de la ciudad para tocar con equipamiento profesional. Requisitos, plazos y cómo inscribirse.
+          </p>
+
+          <div class="metadatos-articulo">
+            <span>Por <strong>Carmina Monjes</strong></span>
+            <span>·</span>
+            <span><time datetime="2026-09-22">22/09/2026</time></span>
+          </div>
+
+          <a href="secciones/noticias.html" class="enlace-lectura-completa" style="align-self: flex-start;">
+            Leer noticia →
+          </a>
+        </article>
+
+        <!-- Noticia Secundaria 2: Columna Internacional -->
+        <article class="tarjeta-secundaria">
+          <div class="etiquetas-meta">
+            <span class="tag-seccion">NOTICIAS</span>
+            <span class="tag-formato">COLUMNA INTERNACIONAL</span>
+          </div>
+
+          <h3 class="tarjeta-secundaria__titulo">
+            <a href="secciones/noticias.html">Regresos inesperados y festivales europeos: las tres giras que marcan el pulso del circuito global</a>
+          </h3>
+
+          <p class="tarjeta-secundaria__bajada">
+            El auge de los contratos independientes en Reino Unido y los artistas internacionales que ya planean fechas en el cono sur para la próxima temporada.
+          </p>
+
+          <div class="metadatos-articulo">
+            <span>Por <strong>Luisina Salgado</strong></span>
+            <span>·</span>
+            <span><time datetime="2026-09-22">22/09/2026</time></span>
+          </div>
+
+          <a href="secciones/noticias.html" class="enlace-lectura-completa" style="align-self: flex-start;">
+            Leer columna →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <hr class="separador-editorial" aria-hidden="true">
+
+    <!-- 3. BLOQUE PROTAGÓNICO DE AGENDA MUSICAL ROSARIO -->
+    <section class="bloque-agenda" id="agenda-rosario" aria-labelledby="titulo-agenda">
+      <div class="encabezado-bloque">
+        <h2 class="encabezado-bloque__titulo" id="titulo-agenda">Agenda Musical Rosario</h2>
+        <span class="encabezado-bloque__aclaracion">
+          <a href="secciones/agenda.html">Ver agenda completa de Rosario →</a>
+        </span>
+      </div>
+
+      <p class="agenda-bajada">
+        Relevamiento de fechas en vivo en Rosario y la región. Priorizamos propuestas autogestivas, artistas emergentes y actividades con acceso gratuito o a precios populares.
+      </p>
+
+      <div class="grilla-eventos">
+        
+        <!-- Tarjeta de Evento 1 -->
+        <article class="tarjeta-evento">
+          <div>
+            <span class="tarjeta-evento__fecha-badge">Viernes 26 SEP · 21:00 hs</span>
+            <h3 class="tarjeta-evento__nombre">Luces del Parque + Brisa Mutante</h3>
+
+            <ul class="tarjeta-evento__datos">
+              <li><strong>Propuesta:</strong> Presentación oficial de 'Distorsión Costera'</li>
+              <li><strong>Lugar:</strong> Galpón 11 (Franja del Río)</li>
+              <li><strong>Dirección:</strong> Estévez Boero 980</li>
+            </ul>
+          </div>
+
+          <div class="tarjeta-evento__acceso">
+            <span class="badge-condicion">ENTRADA GRATUITA</span>
+            <span>Sin costo</span>
+          </div>
+          <p class="evento-enlace-pendiente">Entrada libre hasta colmar capacidad</p>
+        </article>
+
+        <!-- Tarjeta de Evento 2 -->
+        <article class="tarjeta-evento">
+          <div>
+            <span class="tarjeta-evento__fecha-badge">Sábado 27 SEP · 22:30 hs</span>
+            <h3 class="tarjeta-evento__nombre">Noche de Post-Punk: Postales Raras</h3>
+
+            <ul class="tarjeta-evento__datos">
+              <li><strong>Propuesta:</strong> Ciclo de bandas independientes</li>
+              <li><strong>Lugar:</strong> Distrito Siete (D7)</li>
+              <li><strong>Dirección:</strong> Av. Ovidio Lagos 790</li>
+            </ul>
+          </div>
+
+          <div class="tarjeta-evento__acceso">
+            <span class="badge-condicion">PAGA</span>
+            <span>$3.500 ant. / $4.500 puerta</span>
+          </div>
+          <p class="evento-enlace-pendiente">Boletería del espacio cultural</p>
+        </article>
+
+        <!-- Tarjeta de Evento 3 -->
+        <article class="tarjeta-evento">
+          <div>
+            <span class="tarjeta-evento__fecha-badge">Domingo 28 SEP · 18:00 hs</span>
+            <h3 class="tarjeta-evento__nombre">Primavera Acústica en el Río</h3>
+
+            <ul class="tarjeta-evento__datos">
+              <li><strong>Propuesta:</strong> Canción desenchufada y feria gráfica</li>
+              <li><strong>Lugar:</strong> Escalinatas Parque de España</li>
+              <li><strong>Dirección:</strong> Mitre y el río</li>
+            </ul>
+          </div>
+
+          <div class="tarjeta-evento__acceso">
+            <span class="badge-condicion">A LA GORRA</span>
+            <span>Aporte voluntario</span>
+          </div>
+          <p class="evento-enlace-pendiente">Contribución directa a los músicos</p>
+        </article>
+
+      </div>
+    </section>
+
+    <hr class="separador-editorial" aria-hidden="true">
+
+    <!-- 4. ESPACIO AUDIOVISUAL / MULTIMEDIA (FLEXIBLE) -->
+    <section class="seccion-multimedia" aria-labelledby="titulo-multimedia">
+      <div class="encabezado-bloque">
+        <h2 class="encabezado-bloque__titulo" id="titulo-multimedia">Producción Audiovisual</h2>
+        <span class="encabezado-bloque__aclaracion">Podcast, charlas en video y formatos verticales</span>
+      </div>
+
+      <div class="modulo-multimedia">
+        <div class="modulo-multimedia__info">
+          <div class="etiquetas-meta">
+            <span class="tag-seccion">PODCAST</span>
+            <span class="tag-formato">EPISODIO #04</span>
+          </div>
+
+          <h3>¿Existe todavía el ‘sonido Rosario’?</h3>
+          <p>Nos preguntamos si después de Fito, la trova y el rock de los 90 hay un hilo sonoro común en las bandas que ensayan hoy en la ciudad. Debate encendido, recomendaciones de Carmina y efemérides de Gregorio.</p>
+          
+          <div class="metadatos-articulo">
+            <span>Conduce: <strong>Juan Manuel Grisolia</strong></span>
+            <span>·</span>
+            <span>Duración: <strong>34 min</strong></span>
+          </div>
+
+          <a href="https://www.youtube.com/@Amplifica2" target="_blank" rel="noopener noreferrer" class="enlace-lectura-completa" style="align-self: flex-start; margin-top: 0.75rem;">
+            Ver en YouTube @Amplifica2 →
+          </a>
+        </div>
+
+        <div class="multimedia-contenedor-flexible" role="region" aria-label="Reproductor del podcast de Amplifica2">
+          <span class="multimedia-contenedor-flexible__icono" aria-hidden="true">🎙️</span>
+          <span class="multimedia-contenedor-flexible__titulo">AMPLIFICA2 PODCAST · PROGRAMA EN VIVO</span>
+          <p class="multimedia-contenedor-flexible__nota">
+            Disponible en nuestro canal oficial de YouTube y plataformas de audio.
+          </p>
+          <a href="https://www.youtube.com/@Amplifica2" target="_blank" rel="noopener noreferrer" style="color: var(--color-amarillo-acento); font-weight: 700; margin-top: 0.5rem; text-decoration: underline;">
+            Visitar canal de YouTube →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="separador-editorial" aria-hidden="true">
+
+    <!-- 5. OTRAS PUBLICACIONES / PANORAMA DE SECCIONES -->
+    <section class="seccion-ultimas" aria-labelledby="titulo-ultimas">
+      <div class="encabezado-bloque">
+        <h2 class="encabezado-bloque__titulo" id="titulo-ultimas">Otras publicaciones</h2>
+        <span class="encabezado-bloque__aclaracion">Efemérides, coberturas y juegos semanales</span>
+      </div>
+
+      <div class="grilla-ultimas">
+        
+        <!-- Tarjeta 1: Efemérides -->
+        <article class="tarjeta-publicacion">
+          <div class="etiquetas-meta">
+            <span class="tag-seccion">EFEMÉRIDES</span>
+            <span class="tag-formato">DISCO FUNDAMENTAL</span>
+          </div>
+          <h3 class="tarjeta-publicacion__titulo">
+            <a href="secciones/efemerides.html">El disco que convirtió las heridas de Fito Páez en himnos: 34 años de ‘El amor después del amor’</a>
+          </h3>
+          <p class="tarjeta-publicacion__bajada">El álbum más vendido de la historia del rock nacional y el lazo inquebrantable de Fito con las esquinas rosarinas.</p>
+          <div class="metadatos-articulo">
+            <span>Por <strong>Gregorio Born</strong></span>
+          </div>
+          <a href="secciones/efemerides.html" class="enlace-lectura-completa" style="align-self: flex-start;">Ver efeméride →</a>
+        </article>
+
+        <!-- Tarjeta 2: Coberturas -->
+        <article class="tarjeta-publicacion">
+          <div class="etiquetas-meta">
+            <span class="tag-seccion">COBERTURAS</span>
+            <span class="tag-formato">CRÓNICA EN VIVO</span>
+          </div>
+          <h3 class="tarjeta-publicacion__titulo">
+            <a href="secciones/coberturas.html">Bailar entre adoquines: crónica del festival autogestivo en las escalinatas del Parque España</a>
+          </h3>
+          <p class="tarjeta-publicacion__bajada">Más de 600 personas coparon las gradas frente al río en una tarde que unió cumbia, indie pop y fanzines.</p>
+          <div class="metadatos-articulo">
+            <span>Por <strong>Redacción Amplifica2</strong></span>
+          </div>
+          <a href="secciones/coberturas.html" class="enlace-lectura-completa" style="align-self: flex-start;">Leer crónica →</a>
+        </article>
+
+        <!-- Tarjeta 3: Juegos semanales (Morena Manduca) -->
+        <article class="tarjeta-publicacion">
+          <div class="etiquetas-meta">
+            <span class="tag-seccion">JUEGOS</span>
+            <span class="tag-formato">TRIVIA PARTICIPATIVA</span>
+          </div>
+          <h3 class="tarjeta-publicacion__titulo">
+            <a href="https://www.instagram.com/amplifica2.ros/?hl=es-la" target="_blank" rel="noopener noreferrer">Trivia semanal: ¿cuánto sabés de las letras del rock nacido en Rosario?</a>
+          </h3>
+          <p class="tarjeta-publicacion__bajada">Jugá con nosotros en las historias de Instagram y poné a prueba tu oído musical con las consignas de la semana.</p>
+          <div class="metadatos-articulo">
+            <span>Por <strong>Morena Manduca</strong></span>
+          </div>
+          <a href="https://www.instagram.com/amplifica2.ros/?hl=es-la" target="_blank" rel="noopener noreferrer" class="enlace-lectura-completa" style="align-self: flex-start;">Participar en Instagram →</a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       PIE DE PÁGINA INSTITUCIONAL (FOOTER)
+       ======================================================================== -->
+  <footer class="sitio-footer" role="contentinfo">
+    <div class="sitio-footer__contenedor">
+      
+      <!-- Columna 1: Identidad y propuesta -->
+      <div class="footer-columna">
+        <h3 class="footer-columna__titulo">AMPLIFICA2</h3>
+        <p class="footer-descripcion">
+          Medio musical autogestionado por estudiantes universitarios de Periodismo en Rosario. Combinamos agenda, entrevistas, coberturas e historias para descubrir la escena cultural de la ciudad y la región.
+        </p>
+      </div>
+
+      <!-- Columna 2: Secciones e Institucional -->
+      <div class="footer-columna">
+        <h3 class="footer-columna__titulo">Estructura del sitio</h3>
+        <ul class="footer-lista">
+          <li><a href="quienes-somos.html">Quiénes somos · El equipo de redacción</a></li>
+          <li><a href="secciones/agenda.html">Agenda musical de Rosario</a></li>
+          <li><a href="secciones/noticias.html">Noticias y convocatorias</a></li>
+          <li><a href="secciones/entrevistas.html">Entrevistas en profundidad</a></li>
+          <li><a href="secciones/coberturas.html">Coberturas de recitales</a></li>
+          <li><a href="secciones/efemerides.html">Efemérides musicales</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Enlaces reales a plataformas -->
+      <div class="footer-columna">
+        <h3 class="footer-columna__titulo">Canales oficiales</h3>
+        <ul class="footer-redes-lista">
+          <li>
+            <a href="https://www.instagram.com/amplifica2.ros/?hl=es-la" target="_blank" rel="noopener noreferrer" class="footer-red-enlace" aria-label="Instagram de Amplifica2 (abre en pestaña nueva)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              <span>@amplifica2.ros en Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@Amplifica2" target="_blank" rel="noopener noreferrer" class="footer-red-enlace" aria-label="YouTube de Amplifica2 (abre en pestaña nueva)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>@Amplifica2 en YouTube</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="sitio-footer__inferior">
+      <p>© 2026 Amplifica2 · Producción periodística universitaria independiente · Rosario</p>
+      <p>Front-end estático sin dependencias</p>
+    </div>
+  </footer>
+
+  <!-- Script mínimo para comportamiento de menú móvil (sin frameworks) -->
+  <script src="js/main.js"></script>
+</body>
+</html>

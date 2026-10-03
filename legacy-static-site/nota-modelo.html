@@ -1,0 +1,36 @@
+/**
+ * AMPLIFICA2 — Script mínimo de interacción accesible
+ * Propósito: Operar el menú desplegable en pantallas móviles
+ * Sin dependencias ni frameworks.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  const botonMenu = document.querySelector('.boton-menu-movil');
+  const navegacion = document.querySelector('.sitio-nav');
+
+  if (!botonMenu || !navegacion) return;
+
+  botonMenu.addEventListener('click', () => {
+    const estaAbierto = botonMenu.getAttribute('aria-expanded') === 'true';
+    const nuevoEstado = !estaAbierto;
+
+    botonMenu.setAttribute('aria-expanded', String(nuevoEstado));
+    navegacion.classList.toggle('is-open', nuevoEstado);
+  });
+
+  // Cerrar menú al presionar la tecla Escape para mejorar accesibilidad por teclado
+  document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Escape' && navegacion.classList.contains('is-open')) {
+      botonMenu.setAttribute('aria-expanded', 'false');
+      navegacion.classList.remove('is-open');
+      botonMenu.focus();
+    }
+  });
+
+  // Si se redimensiona a pantalla de escritorio, restaurar estado del menú
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 680 && navegacion.classList.contains('is-open')) {
+      botonMenu.setAttribute('aria-expanded', 'false');
+      navegacion.classList.remove('is-open');
+    }
+  });
+});

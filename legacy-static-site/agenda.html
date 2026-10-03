@@ -1,0 +1,122 @@
+# Amplifica2 — Medio musical de Rosario
+
+Sitio web periodístico estático para **Amplifica2**, medio musical universitario e independiente de Rosario, Santa Fe, Argentina.
+
+Construido con **HTML5 semántico**, **CSS3 centralizado** y **JavaScript mínimo accesible** (sin dependencias, frameworks ni compiladores). Diseñado para funcionar 100% de manera local al abrir `index.html` en cualquier navegador web.
+
+---
+
+## 📁 Estructura del proyecto
+
+```text
+amplifica2/
+├── index.html                  <- Portada principal del medio
+├── quienes-somos.html          <- Identidad editorial y los 5 integrantes del equipo
+├── css/
+│   └── styles.css              <- Hoja de estilos centralizada (variables, tipografía, grillas)
+├── js/
+│   └── main.js                 <- Menú móvil accesible con soporte de teclado
+├── img/
+│   ├── logo/
+│   │   └── logo.jpg            <- Logo oficial de Amplifica2
+│   └── notas/                  <- Espacio para fotografías reales de coberturas
+├── notas/
+│   └── nota-modelo.html        <- Plantilla de nota para duplicar y redactar nuevos artículos
+├── secciones/
+│   ├── agenda.html             <- Agenda musical de Rosario (fechas, salas, accesos y precios)
+│   ├── noticias.html           <- Archivo de noticias y columna internacional
+│   ├── entrevistas.html        <- Charlas mano a mano y podcasts
+│   ├── coberturas.html         <- Crónicas de recitales y festivales en vivo
+│   └── efemerides.html         <- Calendario histórico y efemérides del rock
+└── README.md                   <- Esta guía de uso y edición
+```
+
+---
+
+## 🚀 Cómo abrir el sitio en tu computadora
+
+El sitio no requiere servidores locales (como XAMPP, Node.js ni Live Server). Funciona abriendo los archivos directamente:
+
+1. Abrí tu explorador de archivos (Finder en Mac o Explorador en Windows).
+2. Andá a la carpeta `amplifica2`.
+3. Hacé **doble clic en `index.html`** (se abrirá en tu navegador predeterminado: Chrome, Safari, Firefox, etc.).
+4. Toda la navegación entre secciones, notas y páginas internas funciona mediante enlaces relativos (`../`).
+
+---
+
+## ✍️ Guía práctica de edición para la redacción
+
+Cualquier integrante del equipo puede editar el sitio usando un editor de código sencillo (como VS Code, Sublime Text o incluso un editor de texto plano):
+
+### 1. Cómo agregar una nota nueva
+1. Andá a la carpeta `notas/`.
+2. Duplicá el archivo `nota-modelo.html` y cambiale el nombre (ejemplo: `entrevista-banda-rosarina.html`).
+3. Abrí el archivo nuevo y modificá:
+   * `<title>` y `<meta name="description">` en la cabecera.
+   * La etiqueta de sección (`<span class="tag-seccion">`) y formato (`<span class="tag-formato">`).
+   * El titular (`<h1>`) y la bajada (`<p class="nota-encabezado__bajada">`).
+   * El autor/a y la fecha (`<time>`).
+   * Los párrafos (`<p>`), intertítulos (`<h2>`, `<h3>`) y citas textuales (`<blockquote>`).
+   * La ficha del redactor al pie de la nota.
+4. Para que la nota sea visible en la web, enlazala desde `index.html` o desde la sección correspondiente en `secciones/` usando una etiqueta `<a href="notas/tu-nota.html">`.
+
+### 2. Cómo actualizar la Agenda Musical
+1. Abrí `secciones/agenda.html` (y el bloque correspondiente en `index.html`).
+2. Buscá el bloque `<div class="lista-articulos-seccion">`.
+3. Copiá una de las tarjetas `<article class="articulo-item-seccion">` y pegala arriba de las demás (para mantener el orden cronológico).
+4. Completá los campos:
+   * **Fecha y horario del evento:** Destacado en el recuadro negro lateral.
+   * **Nombre del ciclo o evento:** En el `<h3>`.
+   * **Artista o banda:** En el párrafo de bajada.
+   * **Lugar y dirección:** Sala confirmada de Rosario.
+   * **Condición de acceso:** Gratuita, Paga (con precio confirmado) o A la gorra.
+   * **Fecha de chequeo:** Fecha en la que la redacción confirmó el dato.
+
+### 3. Cómo cambiar o incorporar imágenes
+1. Guardá la fotografía (en formato `.jpg`, `.webp` o `.png`) dentro de la carpeta `img/notas/` con un nombre claro en minúsculas (ej: `luces-del-parque-galpon11.jpg`).
+2. En la nota o tarjeta de portada, reemplazá el contenedor `<div class="placeholder-visual">` por la etiqueta de imagen:
+   ```html
+   <img src="../img/notas/luces-del-parque-galpon11.jpg" alt="Luces del Parque tocando en vivo en el Galpón 11" style="width: 100%; border-radius: 4px;">
+   ```
+3. Siempre completá el epígrafe y el crédito:
+   ```html
+   <figcaption>Luces del Parque en vivo · Foto: Juan Manuel Grisolia</figcaption>
+   ```
+
+---
+
+## ⚠️ Limitaciones de mantenimiento de una web estática
+
+* **Actualización manual de listados:** Al no tener base de datos ni CMS (como WordPress), cuando publicás una nota nueva tenés que agregar manualmente su enlace o tarjeta en la portada (`index.html`) y en su sección temática (`secciones/`).
+* **Edición de encabezados compartidos:** Si decidís cambiar un enlace del menú superior, debés actualizarlo en cada archivo HTML individual.
+* **Archivos y fechas pasadas:** Para mantener la agenda limpia, las fechas de eventos que ya transcurrieron deben removerse o trasladarse a una sección de archivo manualmente.
+
+---
+
+## 🌐 Opciones gratuitas para publicar el sitio más adelante
+
+Cuando el equipo decida publicar la web en Internet de forma pública y gratuita, pueden usar cualquiera de estas plataformas estáticas:
+
+1. **GitHub Pages (Recomendada para proyectos universitarios):**
+   * Gratuito y confiable.
+   * Subís la carpeta a un repositorio de GitHub y se activa en un clic.
+   * Te da un enlace del tipo `amplifica2.github.io/web/` o podés conectar un dominio `.com.ar` propio.
+2. **Vercel:**
+   * Muy veloz y con certificado de seguridad SSL (HTTPS) automático.
+   * Se conecta directo con GitHub o subiendo la carpeta desde su aplicación de escritorio.
+3. **Netlify:**
+   * Permite publicar arrastrando directamente la carpeta `amplifica2` a su panel web, sin tocar código ni terminales.
+
+---
+
+## 👥 Equipo de redacción (Amplifica2)
+
+* **Juan Manuel Grisolia:** Conductor.
+* **Carmina Monjes:** Panelista · Agenda y música de nicho.
+* **Luisina Salgado:** Panelista · Escena internacional.
+* **Morena Manduca:** Panelista · Juegos semanales.
+* **Gregorio Born:** Panelista · Efemérides.
+
+**Canales oficiales:**
+* Instagram: [@amplifica2.ros](https://www.instagram.com/amplifica2.ros/?hl=es-la)
+* YouTube: [@Amplifica2](https://www.youtube.com/@Amplifica2)
