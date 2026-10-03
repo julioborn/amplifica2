@@ -10,6 +10,7 @@ interface ArticuloItemSeccionProps {
   href?: string;
   externo?: boolean;
   ctaLabel?: string;
+  imagenUrl?: string;
 }
 
 export default function ArticuloItemSeccion({
@@ -22,6 +23,7 @@ export default function ArticuloItemSeccion({
   href,
   externo,
   ctaLabel,
+  imagenUrl,
 }: ArticuloItemSeccionProps) {
   const enlaceProps = externo
     ? { target: "_blank", rel: "noopener noreferrer" }
@@ -29,17 +31,32 @@ export default function ArticuloItemSeccion({
 
   return (
     <article className="articulo-item-seccion">
-      <div
-        className="placeholder-visual"
-        role="img"
-        aria-label={`Imagen de cobertura para: ${titulo}`}
-        style={{ minHeight: "140px" }}
-      >
-        <span className="placeholder-visual__icono" aria-hidden="true">
-          🎵
-        </span>
-        <span className="placeholder-visual__etiqueta">{seccion}</span>
-      </div>
+      {imagenUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={imagenUrl}
+          alt={titulo}
+          style={{
+            width: "100%",
+            minHeight: "140px",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "var(--radio-borde)",
+          }}
+        />
+      ) : (
+        <div
+          className="placeholder-visual"
+          role="img"
+          aria-label={`Imagen de cobertura para: ${titulo}`}
+          style={{ minHeight: "140px" }}
+        >
+          <span className="placeholder-visual__icono" aria-hidden="true">
+            🎵
+          </span>
+          <span className="placeholder-visual__etiqueta">{seccion}</span>
+        </div>
+      )}
 
       <div>
         <div className="etiquetas-meta">

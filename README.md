@@ -1,10 +1,16 @@
 # Amplifica2 — Medio musical de Rosario
 
 Sitio web de **Amplifica2**, medio musical universitario e independiente de Rosario, Santa Fe,
-Argentina. Construido con **Next.js (App Router) + TypeScript**, con contenido editorial como
-datos estáticos tipados (sin base de datos para el contenido del sitio).
+Argentina. Construido con **Next.js (App Router) + TypeScript**, con **Supabase** como base de
+datos y autenticación, y un panel de administración propio para que el equipo suba contenido
+sin tocar código.
 
 ## Cómo correr el proyecto
+
+1. Copiá `.env.local.example` a `.env.local` y completá las credenciales del proyecto de
+   Supabase (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
+   `SUPABASE_SERVICE_ROLE_KEY`). `.env.local` nunca se sube al repositorio.
+2. Instalá dependencias y corré el servidor:
 
 ```bash
 npm install
@@ -24,51 +30,64 @@ npm run start
 
 ```text
 app/
-├── layout.tsx                  <- Layout global: fuente, banner institucional, header y footer
-├── globals.css                 <- Sistema de diseño completo (paleta, tipografía, componentes)
-├── page.tsx                     <- Portada
-├── quienes-somos/page.tsx       <- Identidad editorial y equipo
-├── secciones/
-│   ├── agenda/page.tsx          <- Agenda musical completa
-│   ├── noticias/page.tsx        <- Noticias y convocatorias
-│   ├── entrevistas/page.tsx     <- Listado de entrevistas
-│   ├── coberturas/page.tsx      <- Listado de coberturas
-│   └── efemerides/page.tsx      <- Listado de efemérides
-├── notas/[slug]/page.tsx        <- Plantilla de nota completa (entrevistas/efemérides/coberturas)
-└── components/                  <- Header, Footer, tarjetas y componentes compartidos
+├── layout.tsx                   <- Layout raíz (fuente, html/body)
+├── globals.css                  <- Sistema de diseño completo (paleta, tipografía, componentes)
+├── components/                  <- Header, Footer, tarjetas y componentes compartidos
+├── (site)/                       <- Sitio público (con header/footer)
+│   ├── layout.tsx                <- Banner institucional + Header + Footer
+│   ├── page.tsx                  <- Portada
+│   ├── quienes-somos/page.tsx    <- Identidad editorial y equipo
+│   ├── secciones/                <- Agenda, noticias, entrevistas, coberturas, efemérides
+│   └── notas/[slug]/page.tsx     <- Plantilla de nota completa
+└── admin/                        <- Panel de administración (sin header/footer públicos)
+    ├── login/                    <- Login con usuario + contraseña
+    └── (dashboard)/              <- Protegido por sesión: equipo, agenda, notas, noticias, perfil
 
 lib/
-├── data/                        <- Contenido editorial como datos tipados (sin DB)
-│   ├── team.ts                  <- Integrantes de la redacción
-│   ├── agenda.ts                <- Eventos de la agenda musical
-│   ├── articulos.ts             <- Notas completas (entrevistas, efemérides, coberturas)
-│   ├── publicaciones.ts         <- Teasers breves (noticias, juegos/trivia)
-│   └── nav.ts                   <- Enlaces del menú de navegación
-└── supabase/                    <- Cliente de Supabase (ver más abajo)
+├── data/                         <- Solo tipos TypeScript del contenido (ya no hay arrays acá)
+└── supabase/
+    ├── client.ts                 <- Cliente anónimo (lecturas públicas desde Server Components)
+    ├── server-client.ts          <- Cliente con sesión del usuario (cookies) para el panel
+    ├── browser-client.ts         <- Cliente para componentes 'use client' (login, subida de fotos)
+    ├── server.ts                 <- Cliente con service_role (solo scripts puntuales)
+    ├── auth.ts                   <- Mapeo usuario -> email interno
+    └── queries.ts                <- Lecturas públicas (equipo, agenda, artículos, publicaciones)
 
-legacy-static-site/              <- Sitio HTML/CSS original, preservado como referencia histórica
+middleware.ts                     <- Protege /admin/* redirigiendo a /admin/login sin sesión
+scripts/seed.mjs                  <- Script puntual ya ejecutado (carga de contenido inicial)
+legacy-static-site/                <- Sitio HTML/CSS original, preservado como referencia histórica
 ```
 
-## Guía rápida de edición de contenido
+## Panel de administración
 
-- **Agregar o editar un evento de agenda:** sumá un objeto al array `agenda` en
-  `lib/data/agenda.ts`.
-- **Agregar una nota completa** (entrevista, efeméride o cobertura con cuerpo propio):
-  sumá un objeto al array `articulos` en `lib/data/articulos.ts`. El `slug` define la URL
-  (`/notas/<slug>`).
-- **Agregar una noticia breve o un juego/trivia:** sumá un objeto en `lib/data/publicaciones.ts`.
-- **Editar el equipo de redacción:** `lib/data/team.ts`.
-- **Editar el menú de navegación:** `lib/data/nav.ts`.
+En `/admin` el equipo puede loguearse (usuario + contraseña, sin email real) y editar todo el
+contenido del sitio: equipo de redacción, agenda de eventos, notas completas (con foto) y
+noticias/juegos breves. Los cambios se ven en el sitio público al instante, sin rebuild.
 
-No hace falta tocar ningún archivo HTML ni reiniciar una base de datos: Next.js regenera las
-páginas automáticamente a partir de estos archivos.
+- Las 5 cuentas de admin ya están creadas en Supabase Auth (usuario = nombre de pila, ver el
+  equipo en `/quienes-somos`). Cada admin puede cambiar su contraseña desde `/admin/perfil`.
+- Si hace falta crear un admin nuevo: Supabase Dashboard → Authentication → Users → Add user,
+  con email `<usuario>@amplifica2.local`.
+- Las fotos de las notas se guardan en el bucket público `articulo-imagenes` de Supabase
+  Storage.
 
-## Supabase (opcional)
+## Base de datos (Supabase)
 
-El proyecto tiene el SDK de Supabase instalado (`lib/supabase/client.ts` para el navegador,
-`lib/supabase/server.ts` con permisos de administrador solo para uso en el servidor) y un
-`.env.local` local con las credenciales del proyecto. `.env.local` está en `.gitignore` y nunca
-se sube al repositorio.
+4 tablas en `public`, con RLS: lectura pública, escritura solo para usuarios autenticados
+(los 5 admins del equipo, no hay auto-registro):
+
+- `equipo`, `eventos_agenda`, `articulos` (con `cuerpo` y `relacionados` en JSONB),
+  `publicaciones` (noticias breves y juegos).
+
+`lib/supabase/queries.ts` tiene las lecturas que usa el sitio público. `scripts/seed.mjs` es el
+script puntual que cargó el contenido inicial (ya ejecutado una vez, no hace falta volver a
+correrlo).
+
+## Desplegar en Vercel
+
+Al importar el repo en Vercel, configurá en el dashboard del proyecto las mismas env vars de
+`.env.local` (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
+`SUPABASE_SERVICE_ROLE_KEY`) — no se suben solas porque `.env.local` está gitignoreado.
 
 ## Sitio original
 
