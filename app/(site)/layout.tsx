@@ -8,7 +8,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         Saltar al contenido principal
       </a>
 
-      <aside className="alerta-desarrollo" aria-label="Aviso editorial">
+      {/* <aside className="alerta-desarrollo" aria-label="Aviso editorial">
         <div className="alerta-desarrollo__contenedor">
           <strong>Amplifica2</strong>
           <span>·</span>
@@ -17,7 +17,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             agenda cultural en vivo.
           </span>
         </div>
-      </aside>
+      </aside> */}
 
       <Header />
 

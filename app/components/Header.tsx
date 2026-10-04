@@ -37,14 +37,14 @@ export default function Header() {
     <header className="sitio-header" role="banner">
       <div className="sitio-header__barra-superior">
         <Link href="/" className="marca" aria-label="Amplifica2 - Inicio">
-          <Image
+          {/* <Image
             src="/logo.jpg"
             alt="Logo de Amplifica2 con fondo negro y micrófono integrado"
             className="marca__logo"
             width={58}
             height={58}
             priority
-          />
+          /> */}
           <div className="marca__texto">
             <span className="marca__nombre">
               AMPLIFICA<span>2</span>
