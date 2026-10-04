@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server-client";
+import CabeceraSeccion from "@/app/components/CabeceraSeccion";
 import { eliminarIntegrante } from "./actions";
 
 export default async function AdminEquipoPage() {
@@ -7,10 +8,13 @@ export default async function AdminEquipoPage() {
   const { data: equipo } = await supabase.from("equipo").select("*").order("orden");
 
   return (
-    <div>
-      <h1>Equipo</h1>
+    <div className="seccion-portada-interna">
+      <CabeceraSeccion
+        titulo="Equipo"
+        descripcion="Los integrantes de la redacción que aparecen en Quiénes somos."
+      />
 
-      <div className="admin-card">
+      <div>
         {(equipo ?? []).map((integrante) => (
           <div className="admin-lista-item" key={integrante.id}>
             <div>
@@ -39,9 +43,8 @@ export default async function AdminEquipoPage() {
         {(equipo ?? []).length === 0 && <p>No hay integrantes todavía.</p>}
       </div>
 
-      <h1 style={{ marginTop: "2rem" }}>Agregar integrante</h1>
-      <Link href="/admin/equipo/nuevo" className="admin-button">
-        Nuevo integrante →
+      <Link href="/admin/equipo/nuevo" className="admin-button" style={{ marginTop: "1.5rem" }}>
+        + Nuevo integrante
       </Link>
     </div>
   );

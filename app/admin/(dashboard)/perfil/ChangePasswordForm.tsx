@@ -30,7 +30,7 @@ export default function ChangePasswordForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="admin-form admin-card">
+    <form onSubmit={handleSubmit} className="admin-form">
       {error && <p className="admin-mensaje-error">{error}</p>}
       {mensaje && <p>{mensaje}</p>}
       <label>

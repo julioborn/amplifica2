@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server-client";
+import CabeceraSeccion from "@/app/components/CabeceraSeccion";
 import { eliminarEvento } from "./actions";
 
 export default async function AdminAgendaPage() {
@@ -7,10 +8,10 @@ export default async function AdminAgendaPage() {
   const { data: eventos } = await supabase.from("eventos_agenda").select("*").order("orden");
 
   return (
-    <div>
-      <h1>Agenda</h1>
+    <div className="seccion-portada-interna">
+      <CabeceraSeccion titulo="Agenda" descripcion="Los eventos en vivo que aparecen en la agenda musical." />
 
-      <div className="admin-card">
+      <div>
         {(eventos ?? []).map((evento) => (
           <div className="admin-lista-item" key={evento.id}>
             <div>
@@ -39,9 +40,8 @@ export default async function AdminAgendaPage() {
         {(eventos ?? []).length === 0 && <p>No hay eventos todavía.</p>}
       </div>
 
-      <h1 style={{ marginTop: "2rem" }}>Agregar evento</h1>
-      <Link href="/admin/agenda/nuevo" className="admin-button">
-        Nuevo evento →
+      <Link href="/admin/agenda/nuevo" className="admin-button" style={{ marginTop: "1.5rem" }}>
+        + Nuevo evento
       </Link>
     </div>
   );

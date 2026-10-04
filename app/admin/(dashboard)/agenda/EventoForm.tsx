@@ -18,7 +18,7 @@ export default function EventoForm({
   valores?: Evento;
 }) {
   return (
-    <form action={action} className="admin-form admin-card">
+    <form action={action} className="admin-form">
       <label>
         Fecha y horario (ej: &quot;Viernes 26 SEP · 21:00 hs&quot;)
         <input type="text" name="fecha_badge" defaultValue={valores?.fecha_badge} required />

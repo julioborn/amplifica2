@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server-client";
+import CabeceraSeccion from "@/app/components/CabeceraSeccion";
 import EventoForm from "../../EventoForm";
 import { actualizarEvento } from "../../actions";
 
@@ -20,9 +21,11 @@ export default async function EditarEventoPage({
   }
 
   return (
-    <div>
-      <h1>Editar evento</h1>
-      <EventoForm action={guardar} valores={evento} />
+    <div className="seccion-portada-interna">
+      <CabeceraSeccion titulo="Editar evento" descripcion={evento.nombre} />
+      <div className="admin-card">
+        <EventoForm action={guardar} valores={evento} />
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function IntegranteForm({
   valores?: Integrante;
 }) {
   return (
-    <form action={action} className="admin-form admin-card">
+    <form action={action} className="admin-form">
       <label>
         Nombre completo
         <input type="text" name="nombre" defaultValue={valores?.nombre} required />

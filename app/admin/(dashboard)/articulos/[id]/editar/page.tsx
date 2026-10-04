@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server-client";
+import CabeceraSeccion from "@/app/components/CabeceraSeccion";
 import ArticuloForm from "../../ArticuloForm";
 import { actualizarArticulo } from "../../actions";
 
@@ -20,9 +21,11 @@ export default async function EditarNotaPage({
   }
 
   return (
-    <div>
-      <h1>Editar nota</h1>
-      <ArticuloForm action={guardar} valores={articulo} />
+    <div className="seccion-portada-interna">
+      <CabeceraSeccion titulo="Editar nota" descripcion={articulo.titulo} />
+      <div className="admin-card">
+        <ArticuloForm action={guardar} valores={articulo} />
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server-client";
+import CabeceraSeccion from "@/app/components/CabeceraSeccion";
 import { eliminarPublicacion } from "./actions";
 
 export default async function AdminNoticiasPage() {
@@ -10,10 +11,10 @@ export default async function AdminNoticiasPage() {
     .order("created_at", { ascending: false });
 
   return (
-    <div>
-      <h1>Noticias y juegos</h1>
+    <div className="seccion-portada-interna">
+      <CabeceraSeccion titulo="Noticias y juegos" descripcion="Teasers breves de noticias y trivias semanales." />
 
-      <div className="admin-card">
+      <div>
         {(publicaciones ?? []).map((pub) => (
           <div className="admin-lista-item" key={pub.id}>
             <div>
@@ -42,9 +43,8 @@ export default async function AdminNoticiasPage() {
         {(publicaciones ?? []).length === 0 && <p>No hay publicaciones todavía.</p>}
       </div>
 
-      <h1 style={{ marginTop: "2rem" }}>Agregar publicación</h1>
-      <Link href="/admin/noticias/nuevo" className="admin-button">
-        Nueva publicación →
+      <Link href="/admin/noticias/nuevo" className="admin-button" style={{ marginTop: "1.5rem" }}>
+        + Nueva publicación
       </Link>
     </div>
   );

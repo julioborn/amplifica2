@@ -19,7 +19,7 @@ export default function PublicacionForm({
   valores?: Publicacion;
 }) {
   return (
-    <form action={action} className="admin-form admin-card">
+    <form action={action} className="admin-form">
       <label>
         Tipo
         <select name="tipo" defaultValue={valores?.tipo ?? "noticia"} required>
