@@ -2,41 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { navLinks } from "@/lib/data/nav";
 import { IconoInstagram, IconoYoutube } from "./Iconos";
 
 const INSTAGRAM_URL = "https://www.instagram.com/amplifica2.ros/?hl=es-la";
 const YOUTUBE_URL = "https://www.youtube.com/@Amplifica2";
-const TOQUES_PARA_ADMIN = 5;
-const VENTANA_TOQUES_MS = 1500;
 
 export default function Header() {
   const pathname = usePathname();
-  const router = useRouter();
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const toques = useRef(0);
-  const reiniciarToques = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  function manejarToqueMarca(evento: React.MouseEvent) {
-    evento.preventDefault();
-    evento.stopPropagation();
-
-    toques.current += 1;
-
-    if (reiniciarToques.current) clearTimeout(reiniciarToques.current);
-
-    if (toques.current >= TOQUES_PARA_ADMIN) {
-      toques.current = 0;
-      router.push("/admin/login");
-      return;
-    }
-
-    reiniciarToques.current = setTimeout(() => {
-      toques.current = 0;
-    }, VENTANA_TOQUES_MS);
-  }
 
   useEffect(() => {
     function alPresionarTecla(evento: KeyboardEvent) {
@@ -69,7 +45,7 @@ export default function Header() {
             height={58}
             priority
           /> */}
-          <div className="marca__texto" onClick={manejarToqueMarca}>
+          <div className="marca__texto">
             <span className="marca__nombre">
               AMPLIFICA<span>2</span>
             </span>
@@ -99,6 +75,9 @@ export default function Header() {
             <IconoYoutube />
             <span>YouTube</span>
           </a>
+          <Link href="/admin/login" className="boton-ingresar">
+            Ingresar
+          </Link>
         </div>
 
         <button

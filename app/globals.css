@@ -248,6 +248,27 @@ a:hover {
   text-decoration: none;
 }
 
+.boton-ingresar {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--fuente-titulares);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #000000;
+  background-color: var(--color-amarillo-acento);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radio-borde);
+  text-decoration: none;
+}
+
+.boton-ingresar:hover {
+  background-color: var(--color-amarillo-hover);
+  color: #000000;
+  text-decoration: none;
+}
+
 /* Botón menú móvil */
 .boton-menu-movil {
   display: none;
