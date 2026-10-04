@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "Amplifica2 · Medio musical de Rosario",
+    default: "Amplifica2",
     template: "%s · Amplifica2",
   },
   description:
