@@ -27,6 +27,9 @@ export default function Footer() {
               <Link href="/secciones/agenda">Agenda musical de Rosario</Link>
             </li>
             <li>
+              <Link href="/secciones/podcast">Podcast</Link>
+            </li>
+            <li>
               <Link href="/secciones/noticias">Noticias y convocatorias</Link>
             </li>
             <li>

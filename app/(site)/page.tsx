@@ -1,15 +1,16 @@
 ﻿import Link from "next/link";
-import { getArticulos, getAgenda, getPublicaciones } from "@/lib/supabase/queries";
+import { getArticulos, getAgenda, getPublicaciones, getUltimoPodcast } from "@/lib/supabase/queries";
 import TarjetaEvento from "@/app/components/TarjetaEvento";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [articulos, agenda, noticias, juegos] = await Promise.all([
+  const [articulos, agenda, noticias, juegos, podcast] = await Promise.all([
     getArticulos(),
     getAgenda(),
     getPublicaciones("noticia"),
     getPublicaciones("juego"),
+    getUltimoPodcast(),
   ]);
 
   const apertura = articulos.find((a) => a.seccion === "ENTREVISTAS");
@@ -186,81 +187,79 @@ export default async function Home() {
       <hr className="separador-editorial" aria-hidden="true" />
 
       {/* 4. PRODUCCIÓN AUDIOVISUAL */}
-      <section className="seccion-multimedia" id="multimedia" aria-labelledby="titulo-multimedia">
-        <div className="encabezado-bloque">
-          <h2 className="encabezado-bloque__titulo" id="titulo-multimedia">
-            Producción Audiovisual
-          </h2>
-          <span className="encabezado-bloque__aclaracion">
-            Podcast, charlas en video y formatos verticales
-          </span>
-        </div>
-
-        <div className="modulo-multimedia">
-          <div className="modulo-multimedia__info">
-            <div className="etiquetas-meta">
-              <span className="tag-seccion">PODCAST</span>
-              <span className="tag-formato">EPISODIO #04</span>
-            </div>
-
-            <h3>¿Existe todavía el &lsquo;sonido Rosario&rsquo;?</h3>
-            <p>
-              Nos preguntamos si después de Fito, la trova y el rock de los 90 hay un hilo sonoro
-              común en las bandas que ensayan hoy en la ciudad. Debate encendido, recomendaciones
-              de Carmina y efemérides de Gregorio.
-            </p>
-
-            <div className="metadatos-articulo">
-              <span>
-                Conduce: <strong>Juan Manuel Grisolia</strong>
-              </span>
-              <span>·</span>
-              <span>
-                Duración: <strong>34 min</strong>
-              </span>
-            </div>
-
-            <a
-              href="https://www.youtube.com/@Amplifica2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="enlace-lectura-completa"
-              style={{ alignSelf: "flex-start", marginTop: "0.75rem" }}
-            >
-              Ver en YouTube @Amplifica2 →
-            </a>
+      {podcast && (
+        <section className="seccion-multimedia" id="multimedia" aria-labelledby="titulo-multimedia">
+          <div className="encabezado-bloque">
+            <h2 className="encabezado-bloque__titulo" id="titulo-multimedia">
+              Producción Audiovisual
+            </h2>
+            <span className="encabezado-bloque__aclaracion">
+              <Link href="/secciones/podcast">Ver todos los episodios →</Link>
+            </span>
           </div>
 
-          <div
-            className="multimedia-contenedor-flexible"
-            role="region"
-            aria-label="Reproductor del podcast de Amplifica2"
-          >
-            <span className="multimedia-contenedor-flexible__icono" aria-hidden="true">
-              🎙️
-            </span>
-            <span className="multimedia-contenedor-flexible__titulo">
-              AMPLIFICA2 PODCAST · PROGRAMA EN VIVO
-            </span>
-            <p className="multimedia-contenedor-flexible__nota">
-              Disponible en nuestro canal oficial de YouTube y plataformas de audio.
-            </p>
-            <a
-              href="https://www.youtube.com/@Amplifica2"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "var(--color-amarillo-acento)",
-                fontWeight: 700,
-                marginTop: "0.5rem",
-                textDecoration: "underline",
-              }}
+          <div className="modulo-multimedia">
+            <div className="modulo-multimedia__info">
+              <div className="etiquetas-meta">
+                <span className="tag-seccion">PODCAST</span>
+                <span className="tag-formato">{podcast.numeroEpisodio}</span>
+              </div>
+
+              <h3>{podcast.titulo}</h3>
+              <p>{podcast.descripcion}</p>
+
+              <div className="metadatos-articulo">
+                <span>
+                  Conduce: <strong>{podcast.conductor}</strong>
+                </span>
+                <span>·</span>
+                <span>
+                  Duración: <strong>{podcast.duracionMin} min</strong>
+                </span>
+              </div>
+
+              <a
+                href={podcast.enlaceYoutube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="enlace-lectura-completa"
+                style={{ alignSelf: "flex-start", marginTop: "0.75rem" }}
+              >
+                Ver en YouTube @Amplifica2 →
+              </a>
+            </div>
+
+            <div
+              className="multimedia-contenedor-flexible"
+              role="region"
+              aria-label="Reproductor del podcast de Amplifica2"
             >
-              Visitar canal de YouTube →
-            </a>
+              <span className="multimedia-contenedor-flexible__icono" aria-hidden="true">
+                🎙️
+              </span>
+              <span className="multimedia-contenedor-flexible__titulo">
+                AMPLIFICA2 PODCAST · PROGRAMA EN VIVO
+              </span>
+              <p className="multimedia-contenedor-flexible__nota">
+                Disponible en nuestro canal oficial de YouTube y plataformas de audio.
+              </p>
+              <a
+                href="https://www.youtube.com/@Amplifica2"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "var(--color-amarillo-acento)",
+                  fontWeight: 700,
+                  marginTop: "0.5rem",
+                  textDecoration: "underline",
+                }}
+              >
+                Visitar canal de YouTube →
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <hr className="separador-editorial" aria-hidden="true" />
 

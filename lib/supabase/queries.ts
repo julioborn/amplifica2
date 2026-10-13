@@ -3,6 +3,7 @@ import type { Integrante } from "@/lib/data/team";
 import type { EventoAgenda } from "@/lib/data/agenda";
 import type { Articulo } from "@/lib/data/articulos";
 import type { Publicacion } from "@/lib/data/publicaciones";
+import type { Podcast } from "@/lib/data/podcasts";
 
 export async function getEquipo(): Promise<Integrante[]> {
   const { data, error } = await supabase
@@ -72,6 +73,33 @@ export async function getArticuloPorSlug(slug: string): Promise<Articulo | null>
   const { data, error } = await supabase.from("articulos").select("*").eq("slug", slug).maybeSingle();
   if (error) throw error;
   return data ? mapArticulo(data) : null;
+}
+
+function mapPodcast(fila: Record<string, unknown>): Podcast {
+  return {
+    id: fila.id as string,
+    numeroEpisodio: fila.numero_episodio as string,
+    titulo: fila.titulo as string,
+    descripcion: fila.descripcion as string,
+    conductor: fila.conductor as string,
+    duracionMin: fila.duracion_min as number,
+    enlaceYoutube: fila.enlace_youtube as string,
+    fechaISO: fila.fecha as string,
+  };
+}
+
+export async function getPodcasts(): Promise<Podcast[]> {
+  const { data, error } = await supabase
+    .from("podcasts")
+    .select("*")
+    .order("fecha", { ascending: false });
+  if (error) throw error;
+  return (data ?? []).map(mapPodcast);
+}
+
+export async function getUltimoPodcast(): Promise<Podcast | null> {
+  const podcasts = await getPodcasts();
+  return podcasts[0] ?? null;
 }
 
 export async function getPublicaciones(tipo: "noticia" | "juego"): Promise<Publicacion[]> {

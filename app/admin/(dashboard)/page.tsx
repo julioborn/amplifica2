@@ -5,6 +5,7 @@ const secciones = [
   { href: "/admin/equipo", titulo: "Equipo", texto: "Nombre, usuario, rol y bio de cada integrante de la redacción." },
   { href: "/admin/agenda", titulo: "Agenda", texto: "Eventos en vivo: fecha, lugar, dirección y condición de acceso." },
   { href: "/admin/articulos", titulo: "Notas", texto: "Entrevistas, efemérides y coberturas completas, con foto." },
+  { href: "/admin/podcasts", titulo: "Podcast", texto: "Episodios del programa: título, descripción, duración y link a YouTube." },
   { href: "/admin/noticias", titulo: "Noticias y juegos", texto: "Teasers breves de noticias y trivias semanales." },
 ];
 

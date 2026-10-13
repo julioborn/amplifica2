@@ -10,6 +10,7 @@ const adminLinks = [
   { href: "/admin/equipo", label: "Equipo" },
   { href: "/admin/agenda", label: "Agenda" },
   { href: "/admin/articulos", label: "Notas" },
+  { href: "/admin/podcasts", label: "Podcast" },
   { href: "/admin/noticias", label: "Noticias" },
   { href: "/admin/perfil", label: "Mi cuenta" },
 ];
