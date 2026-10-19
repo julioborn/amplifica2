@@ -13,12 +13,18 @@ export default async function Home() {
     getUltimoPodcast(),
   ]);
 
-  const apertura = articulos.find((a) => a.seccion === "ENTREVISTAS");
+  // La apertura prioriza una entrevista; si todavía no hay ninguna, usa la nota más reciente
+  // que exista (de cualquier sección) para que la portada nunca quede vacía sin motivo.
+  const apertura = articulos.find((a) => a.seccion === "ENTREVISTAS") ?? articulos[0];
   const efemerideDestacada = articulos.find((a) => a.seccion === "EFEMÉRIDES");
   const coberturaDestacada = articulos.find((a) => a.seccion === "COBERTURAS");
   const [juegoDestacado] = juegos;
 
-  if (!apertura || !efemerideDestacada || !coberturaDestacada) {
+  const hayOtrasPublicaciones = Boolean(efemerideDestacada || coberturaDestacada || juegoDestacado);
+  const hayAlgoQueMostrar =
+    apertura || noticias.length > 0 || agenda.length > 0 || podcast || hayOtrasPublicaciones;
+
+  if (!hayAlgoQueMostrar) {
     return (
       <main className="contenedor-principal" id="contenido-principal">
         <div className="estado-vacio">
@@ -27,7 +33,7 @@ export default async function Home() {
           </div>
           <h2 className="estado-vacio__titulo">Todavía no hay contenido publicado</h2>
           <p className="estado-vacio__texto">
-            Ingresá a /admin para cargar la primera entrevista, efeméride y cobertura.
+            Ingresá a /admin para cargar la primera nota, evento o episodio.
           </p>
         </div>
       </main>
@@ -37,6 +43,7 @@ export default async function Home() {
   return (
     <main className="contenedor-principal" id="contenido-principal">
       {/* 1. APERTURA EDITORIAL */}
+      {apertura && (
       <section className="seccion-apertura" aria-labelledby="titulo-apertura">
         <div className="encabezado-bloque">
           <h2 className="encabezado-bloque__titulo">Apertura editorial</h2>
@@ -116,8 +123,10 @@ export default async function Home() {
           </figure>
         </article>
       </section>
+      )}
 
       {/* 2. NOTICIAS SECUNDARIAS */}
+      {noticias.length > 0 && (
       <section className="seccion-secundarias" aria-labelledby="titulo-secundarias">
         <div className="encabezado-bloque">
           <h2 className="encabezado-bloque__titulo" id="titulo-secundarias">
@@ -157,10 +166,12 @@ export default async function Home() {
           ))}
         </div>
       </section>
+      )}
 
-      <hr className="separador-editorial" aria-hidden="true" />
+      {(noticias.length > 0 || agenda.length > 0) && <hr className="separador-editorial" aria-hidden="true" />}
 
       {/* 3. AGENDA MUSICAL ROSARIO */}
+      {agenda.length > 0 && (
       <section className="bloque-agenda" id="agenda-rosario" aria-labelledby="titulo-agenda">
         <div className="encabezado-bloque">
           <h2 className="encabezado-bloque__titulo" id="titulo-agenda">
@@ -183,8 +194,9 @@ export default async function Home() {
           ))}
         </div>
       </section>
+      )}
 
-      <hr className="separador-editorial" aria-hidden="true" />
+      {(agenda.length > 0 || podcast) && <hr className="separador-editorial" aria-hidden="true" />}
 
       {/* 4. PRODUCCIÓN AUDIOVISUAL */}
       {podcast && (
@@ -261,9 +273,10 @@ export default async function Home() {
         </section>
       )}
 
-      <hr className="separador-editorial" aria-hidden="true" />
+      {(podcast || hayOtrasPublicaciones) && <hr className="separador-editorial" aria-hidden="true" />}
 
       {/* 5. OTRAS PUBLICACIONES */}
+      {hayOtrasPublicaciones && (
       <section className="seccion-ultimas" aria-labelledby="titulo-ultimas">
         <div className="encabezado-bloque">
           <h2 className="encabezado-bloque__titulo" id="titulo-ultimas">
@@ -275,6 +288,7 @@ export default async function Home() {
         </div>
 
         <div className="grilla-ultimas">
+          {efemerideDestacada && (
           <article className="tarjeta-publicacion">
             <div className="etiquetas-meta">
               <span className="tag-seccion">{efemerideDestacada.seccion}</span>
@@ -297,7 +311,9 @@ export default async function Home() {
               Ver efeméride →
             </Link>
           </article>
+          )}
 
+          {coberturaDestacada && (
           <article className="tarjeta-publicacion">
             <div className="etiquetas-meta">
               <span className="tag-seccion">{coberturaDestacada.seccion}</span>
@@ -320,6 +336,7 @@ export default async function Home() {
               Leer crónica →
             </Link>
           </article>
+          )}
 
           {juegoDestacado && (
             <article className="tarjeta-publicacion">
@@ -351,6 +368,7 @@ export default async function Home() {
           )}
         </div>
       </section>
+      )}
     </main>
   );
 }
