@@ -57,7 +57,7 @@ export default async function NotaPage({
                 alt={articulo.titulo}
                 style={{ width: "100%", borderRadius: "var(--radio-borde)" }}
               />
-              <figcaption>Fotografía de cobertura editorial · Amplifica2</figcaption>
+              <figcaption>{articulo.imagenCredito || "Fotografía de cobertura editorial · Amplifica2"}</figcaption>
             </figure>
           ) : null}
 
@@ -75,7 +75,12 @@ export default async function NotaPage({
 
           <div className="ficha-autor">
             <div className="ficha-autor__avatar" aria-hidden="true">
-              {articulo.autorIniciales}
+              {articulo.autorFotoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={articulo.autorFotoUrl} alt="" className="ficha-autor__foto" />
+              ) : (
+                articulo.autorIniciales
+              )}
             </div>
             <div>
               <p className="ficha-autor__nombre">{articulo.autor}</p>

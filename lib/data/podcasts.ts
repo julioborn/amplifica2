@@ -7,4 +7,6 @@ export interface Podcast {
   duracionMin: number;
   enlaceYoutube: string;
   fechaISO: string;
+  imagenUrl?: string;
+  imagenCredito?: string;
 }

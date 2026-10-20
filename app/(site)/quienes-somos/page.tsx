@@ -70,7 +70,12 @@ export default async function QuienesSomosPage() {
             {equipo.map((integrante) => (
               <div className="tarjeta-integrante" key={integrante.iniciales}>
                 <div className="tarjeta-integrante__avatar" aria-hidden="true">
-                  {integrante.iniciales}
+                  {integrante.fotoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={integrante.fotoUrl} alt="" className="tarjeta-integrante__foto" />
+                  ) : (
+                    integrante.iniciales
+                  )}
                 </div>
                 <h3 className="tarjeta-integrante__nombre">{integrante.nombre}</h3>
                 <span className="tarjeta-integrante__rol">{integrante.rol}</span>

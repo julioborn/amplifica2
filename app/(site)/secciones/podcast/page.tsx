@@ -27,17 +27,32 @@ export default async function PodcastPage() {
         <div className="lista-articulos-seccion">
           {podcasts.map((podcast) => (
             <article className="articulo-item-seccion" key={podcast.id}>
-              <div
-                className="placeholder-visual"
-                role="img"
-                aria-label={`Episodio: ${podcast.titulo}`}
-                style={{ minHeight: "140px" }}
-              >
-                <span className="placeholder-visual__icono" aria-hidden="true">
-                  🎙️
-                </span>
-                <span className="placeholder-visual__etiqueta">{podcast.numeroEpisodio}</span>
-              </div>
+              {podcast.imagenUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={podcast.imagenUrl}
+                  alt={podcast.titulo}
+                  style={{
+                    width: "100%",
+                    minHeight: "140px",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "var(--radio-borde)",
+                  }}
+                />
+              ) : (
+                <div
+                  className="placeholder-visual"
+                  role="img"
+                  aria-label={`Episodio: ${podcast.titulo}`}
+                  style={{ minHeight: "140px" }}
+                >
+                  <span className="placeholder-visual__icono" aria-hidden="true">
+                    🎙️
+                  </span>
+                  <span className="placeholder-visual__etiqueta">{podcast.numeroEpisodio}</span>
+                </div>
+              )}
 
               <div>
                 <div className="etiquetas-meta">

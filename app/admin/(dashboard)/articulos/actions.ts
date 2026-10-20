@@ -15,6 +15,8 @@ function datosDesdeForm(formData: FormData) {
     autor_bio: String(formData.get("autor_bio") ?? ""),
     fecha: String(formData.get("fecha") ?? ""),
     imagen_url: String(formData.get("imagen_url") ?? "") || null,
+    imagen_credito: String(formData.get("imagen_credito") ?? "").trim() || null,
+    autor_foto_url: String(formData.get("autor_foto_url") ?? "") || null,
     cuerpo: JSON.parse(String(formData.get("cuerpo") ?? "[]")),
     relacionados: JSON.parse(String(formData.get("relacionados") ?? "[]")),
   };

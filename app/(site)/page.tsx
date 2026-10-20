@@ -82,12 +82,29 @@ export default async function Home() {
 
           <figure className="articulo-apertura__imagen">
             {apertura.imagenUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={apertura.imagenUrl}
-                alt={apertura.titulo}
-                style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "var(--radio-borde)" }}
-              />
+              <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={apertura.imagenUrl}
+                  alt={apertura.titulo}
+                  style={{
+                    width: "100%",
+                    flexGrow: 1,
+                    objectFit: "cover",
+                    borderRadius: "var(--radio-borde)",
+                  }}
+                />
+                <figcaption
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "var(--color-gris-mutado)",
+                    fontStyle: "italic",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  {apertura.imagenCredito || "Fotografía de cobertura editorial · Amplifica2"}
+                </figcaption>
+              </div>
             ) : (
               <div
                 className="placeholder-visual"
@@ -241,34 +258,55 @@ export default async function Home() {
               </a>
             </div>
 
-            <div
-              className="multimedia-contenedor-flexible"
-              role="region"
-              aria-label="Reproductor del podcast de Amplifica2"
-            >
-              <span className="multimedia-contenedor-flexible__icono" aria-hidden="true">
-                🎙️
-              </span>
-              <span className="multimedia-contenedor-flexible__titulo">
-                AMPLIFICA2 PODCAST · PROGRAMA EN VIVO
-              </span>
-              <p className="multimedia-contenedor-flexible__nota">
-                Disponible en nuestro canal oficial de YouTube y plataformas de audio.
-              </p>
-              <a
-                href="https://www.youtube.com/@Amplifica2"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "var(--color-amarillo-acento)",
-                  fontWeight: 700,
-                  marginTop: "0.5rem",
-                  textDecoration: "underline",
-                }}
+            {podcast.imagenUrl ? (
+              <figure style={{ margin: 0 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={podcast.imagenUrl}
+                  alt={podcast.titulo}
+                  style={{ width: "100%", borderRadius: "var(--radio-borde)" }}
+                />
+                <figcaption
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "var(--color-gris-mutado)",
+                    fontStyle: "italic",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  {podcast.imagenCredito || "Fotografía de cobertura editorial · Amplifica2"}
+                </figcaption>
+              </figure>
+            ) : (
+              <div
+                className="multimedia-contenedor-flexible"
+                role="region"
+                aria-label="Reproductor del podcast de Amplifica2"
               >
-                Visitar canal de YouTube →
-              </a>
-            </div>
+                <span className="multimedia-contenedor-flexible__icono" aria-hidden="true">
+                  🎙️
+                </span>
+                <span className="multimedia-contenedor-flexible__titulo">
+                  AMPLIFICA2 PODCAST · PROGRAMA EN VIVO
+                </span>
+                <p className="multimedia-contenedor-flexible__nota">
+                  Disponible en nuestro canal oficial de YouTube y plataformas de audio.
+                </p>
+                <a
+                  href="https://www.youtube.com/@Amplifica2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "var(--color-amarillo-acento)",
+                    fontWeight: 700,
+                    marginTop: "0.5rem",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Visitar canal de YouTube →
+                </a>
+              </div>
+            )}
           </div>
         </section>
       )}

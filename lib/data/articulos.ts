@@ -22,4 +22,6 @@ export interface Articulo {
   cuerpo: BloqueTexto[];
   relacionados: Relacionado[];
   imagenUrl?: string;
+  imagenCredito?: string;
+  autorFotoUrl?: string;
 }

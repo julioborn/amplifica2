@@ -16,6 +16,7 @@ export async function getEquipo(): Promise<Integrante[]> {
     nombre: fila.nombre,
     rol: fila.rol,
     detalle: fila.detalle,
+    fotoUrl: fila.foto_url ?? undefined,
   }));
 }
 
@@ -57,6 +58,8 @@ function mapArticulo(fila: Record<string, unknown>): Articulo {
     cuerpo: (fila.cuerpo ?? []) as Articulo["cuerpo"],
     relacionados: (fila.relacionados ?? []) as Articulo["relacionados"],
     imagenUrl: (fila.imagen_url as string | null) ?? undefined,
+    imagenCredito: (fila.imagen_credito as string | null) ?? undefined,
+    autorFotoUrl: (fila.autor_foto_url as string | null) ?? undefined,
   };
 }
 
@@ -85,6 +88,8 @@ function mapPodcast(fila: Record<string, unknown>): Podcast {
     duracionMin: fila.duracion_min as number,
     enlaceYoutube: fila.enlace_youtube as string,
     fechaISO: fila.fecha as string,
+    imagenUrl: (fila.imagen_url as string | null) ?? undefined,
+    imagenCredito: (fila.imagen_credito as string | null) ?? undefined,
   };
 }
 

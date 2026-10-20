@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server-client";
 
 function datosDesdeForm(formData: FormData) {
@@ -11,6 +10,7 @@ function datosDesdeForm(formData: FormData) {
     rol: String(formData.get("rol") ?? ""),
     detalle: String(formData.get("detalle") ?? ""),
     orden: Number(formData.get("orden") ?? 0),
+    foto_url: String(formData.get("foto_url") ?? "") || null,
   };
 }
 
@@ -20,7 +20,6 @@ export async function crearIntegrante(formData: FormData) {
   if (error) throw new Error(error.message);
   revalidatePath("/admin/equipo");
   revalidatePath("/quienes-somos");
-  redirect("/admin/equipo");
 }
 
 export async function actualizarIntegrante(id: string, formData: FormData) {
@@ -29,7 +28,6 @@ export async function actualizarIntegrante(id: string, formData: FormData) {
   if (error) throw new Error(error.message);
   revalidatePath("/admin/equipo");
   revalidatePath("/quienes-somos");
-  redirect("/admin/equipo");
 }
 
 export async function eliminarIntegrante(id: string) {

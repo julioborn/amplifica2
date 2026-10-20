@@ -3,4 +3,5 @@ export interface Integrante {
   nombre: string;
   rol: string;
   detalle: string;
+  fotoUrl?: string;
 }

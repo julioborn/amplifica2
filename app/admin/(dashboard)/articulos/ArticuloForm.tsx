@@ -18,9 +18,22 @@ type Valores = {
   autor_bio?: string;
   fecha?: string;
   imagen_url?: string | null;
+  imagen_credito?: string | null;
+  autor_foto_url?: string | null;
   cuerpo?: Bloque[];
   relacionados?: Relacionado[];
 };
+
+async function subirImagen(bucket: string, archivo: File): Promise<string> {
+  const supabase = createBrowserSupabaseClient();
+  const nombreArchivo = `${Date.now()}-${archivo.name.replace(/\s+/g, "-")}`;
+  const { data: subida, error: errorSubida } = await supabase.storage
+    .from(bucket)
+    .upload(nombreArchivo, archivo, { upsert: true });
+  if (errorSubida) throw new Error(errorSubida.message);
+  const { data: urlPublica } = supabase.storage.from(bucket).getPublicUrl(subida.path);
+  return urlPublica.publicUrl;
+}
 
 export default function ArticuloForm({
   action,
@@ -34,6 +47,8 @@ export default function ArticuloForm({
   const [relacionados, setRelacionados] = useState<Relacionado[]>(valores?.relacionados ?? []);
   const [archivoImagen, setArchivoImagen] = useState<File | null>(null);
   const [previewImagen, setPreviewImagen] = useState<string | null>(valores?.imagen_url ?? null);
+  const [archivoFotoAutor, setArchivoFotoAutor] = useState<File | null>(null);
+  const [previewFotoAutor, setPreviewFotoAutor] = useState<string | null>(valores?.autor_foto_url ?? null);
   const [guardando, setGuardando] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -77,6 +92,12 @@ export default function ArticuloForm({
     if (archivo) setPreviewImagen(URL.createObjectURL(archivo));
   }
 
+  function manejarArchivoFotoAutor(evento: React.ChangeEvent<HTMLInputElement>) {
+    const archivo = evento.target.files?.[0] ?? null;
+    setArchivoFotoAutor(archivo);
+    if (archivo) setPreviewFotoAutor(URL.createObjectURL(archivo));
+  }
+
   async function handleSubmit(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault();
     setError(null);
@@ -85,21 +106,16 @@ export default function ArticuloForm({
     try {
       const formData = new FormData(evento.currentTarget);
 
-      let imagenUrl = valores?.imagen_url ?? "";
-      if (archivoImagen) {
-        const supabase = createBrowserSupabaseClient();
-        const nombreArchivo = `${Date.now()}-${archivoImagen.name.replace(/\s+/g, "-")}`;
-        const { data: subida, error: errorSubida } = await supabase.storage
-          .from("articulo-imagenes")
-          .upload(nombreArchivo, archivoImagen, { upsert: true });
-        if (errorSubida) throw new Error(errorSubida.message);
-        const { data: urlPublica } = supabase.storage
-          .from("articulo-imagenes")
-          .getPublicUrl(subida.path);
-        imagenUrl = urlPublica.publicUrl;
-      }
+      const imagenUrl = archivoImagen
+        ? await subirImagen("articulo-imagenes", archivoImagen)
+        : valores?.imagen_url ?? "";
+
+      const autorFotoUrl = archivoFotoAutor
+        ? await subirImagen("equipo-fotos", archivoFotoAutor)
+        : valores?.autor_foto_url ?? "";
 
       formData.set("imagen_url", imagenUrl);
+      formData.set("autor_foto_url", autorFotoUrl);
       formData.set("cuerpo", JSON.stringify(bloques.filter((b) => b.texto.trim() !== "")));
       formData.set(
         "relacionados",
@@ -153,6 +169,19 @@ export default function ArticuloForm({
         <textarea name="autor_bio" defaultValue={valores?.autor_bio} required />
       </label>
       <label>
+        Foto del autor/a (para el círculo junto a la bio)
+        <input type="file" accept="image/*" onChange={manejarArchivoFotoAutor} />
+      </label>
+      {previewFotoAutor && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={previewFotoAutor}
+          alt="Vista previa de la foto del autor/a"
+          className="admin-imagen-preview"
+          style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover" }}
+        />
+      )}
+      <label>
         Fecha
         <input type="date" name="fecha" defaultValue={valores?.fecha} required />
       </label>
@@ -165,6 +194,10 @@ export default function ArticuloForm({
         // eslint-disable-next-line @next/next/no-img-element
         <img src={previewImagen} alt="Vista previa" className="admin-imagen-preview" />
       )}
+      <label>
+        Crédito de la foto (ej: &quot;Foto: Juan Pérez&quot; o &quot;Foto: cedida por la banda&quot;)
+        <input type="text" name="imagen_credito" defaultValue={valores?.imagen_credito ?? ""} />
+      </label>
 
       <div>
         <strong>Cuerpo de la nota</strong>
